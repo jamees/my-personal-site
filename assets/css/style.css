@@ -34,7 +34,7 @@ html, body{
     font-size: 3em;
   }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
 
     .title {
         font-family: 'Lexend Giga', sans-serif;
@@ -49,7 +49,7 @@ html, body{
   .sub-title{
     font-family: 'Lexend Giga', sans-serif;
     color: rgb(170, 170, 170);
-    font-size: 1em;
+    font-size: 0.9em;
 
   }
 
