@@ -2,8 +2,8 @@ var app = new Vue({
     el: '#app',
     data: {
       titleOne: 'james',
-      titleTwo: '_cl_2',
-      titleThree: '',
+      titleTwo: '_cl',
+      titleThree: 'Saludos a los cabros del CoE!',
       subTitle: ''
     }
 });
