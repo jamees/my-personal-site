@@ -3,7 +3,7 @@ var app = new Vue({
     data: {
       titleOne: 'james',
       titleTwo: '_cl',
-      titleThree: 'Saludos a los cabros del CoE!',
+      titleThree: '',
       subTitle: ''
     }
 });
