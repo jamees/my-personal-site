@@ -4,6 +4,6 @@ var app = new Vue({
       titleOne: 'james',
       titleTwo: '_cl',
       titleThree: '',
-      subTitle: ''
+      subTitle: 'rot8:riuma'
     }
 });
