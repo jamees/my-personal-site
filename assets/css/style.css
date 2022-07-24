@@ -4,8 +4,21 @@ html, body{
 	padding:0px; 
 	margin:0px;
 	overflow: hidden;
-    background-attachment: fixed;
-    background-color: #101122;
+  background-attachment: fixed;
+  background-color: #000d37;
+  animation: color-change 30s infinite;
+}
+
+@keyframes color-change {
+  0%{
+    background-color: #000d37;
+  }
+  33%{
+    background-color: #0b0820;
+  }
+  67%{
+    background-color: #00151f;
+  }
 }
 
 #projector {
@@ -26,11 +39,18 @@ html, body{
     margin-top:  -187px;
 }
 
+.rrss-logo{
+  max-width: 30px;
+}
+
+.linkedin{
+  max-width: 36px;
+}
 
 
 .title {
     font-family: 'Lexend Giga', sans-serif;
-    color: #fff;
+    color: rgb(244, 245, 255);
     font-size: 3em;
   }
 
@@ -39,20 +59,21 @@ html, body{
     .title {
         font-family: 'Lexend Giga', sans-serif;
         color: #f2f2f2;
-        font-size: 2em;
+        font-size: 2.5em;
       }
 
 }
-
-
 
   .sub-title{
     font-family: 'Lexend Giga', sans-serif;
     color: rgb(170, 170, 170);
     font-size: 0.9em;
+    padding-top: 20px;
 
   }
 
   .dot{
-      color: #6fd7e2;
+      color: #34ff60bd;
   }
+
+  

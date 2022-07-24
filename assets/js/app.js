@@ -2,8 +2,8 @@ var app = new Vue({
     el: '#app',
     data: {
       titleOne: 'james',
-      titleTwo: '_cl',
+      titleTwo: '.cl',
       titleThree: '',
-      subTitle: 'rot8:riuma'
+      subTitle: ''
     }
 });
