@@ -47,6 +47,9 @@ html, body{
   max-width: 36px;
 }
 
+.email{
+  max-width: 34px;
+}
 
 .title {
     font-family: 'Lexend Giga', sans-serif;
