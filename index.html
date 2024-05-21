@@ -1,68 +1,159 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="theme-color" content="#000000" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James.cl</title>
 
-
-        <title>james.cl - My personal sandbox site</title>
-    
-    <!--CSS -->
-        <link href="https://fonts.googleapis.com/css?family=Lexend+Giga&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-
-
-    <!--JS Libraries -->
-        <script src="https://code.createjs.com/easeljs-0.7.1.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-
-    
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115455553-1"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-115455553-1');
-        </script>
-
+     <!--CSS -->
+     <link href="https://fonts.googleapis.com/css?family=Lexend+Giga&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+ 
+     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+ 
+ 
+     <!--JS Libraries -->
+     <script src="https://code.createjs.com/easeljs-0.7.1.min.js"></script>
+     <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+ 
+ 
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115455553-1"></script>
+     <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag() { dataLayer.push(arguments); }
+         gtag('js', new Date());
+         gtag('config', 'UA-115455553-1');
+     </script>
 
 </head>
-<body>
-    <canvas id="projector">Your browser does not support the Canvas element.</canvas>
 
-    <div id="app" class="container h-100">
-            <div class="row h-100 justify-content-center align-items-center">
-                    <div class="col">
-                            <div class="title">{{titleOne}}<span class="dot">{{titleTwo}}</span>{{titleThree}}</div>
-                            <div class="w-100"></div>
-                            <div class="sub-title"> 
-                                <a href="https://cl.linkedin.com/in/jameees" target="_self"> <img src="assets/img/logo-linkedin.png" class="rrss-logo linkedin"> </a>
-                                <a href="https://github.com/jamees" target="_self"> <img src="assets/img/logo-github.png" class="rrss-logo github"> </a>
-                                <a href="mailto:mail@james.cl" target="_self"> <img src="assets/img/logo-email.png" class="rrss-logo logo-email"> </a>
-                            </div>
-                    </div>                    
-            </div> 
-           
-          </div>
-    
+<body>
+
+    <nav>
+        <div class="logo"><img src="logo_white.png" class="logo-icon" /></div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-section nav-list">
+            <li class="link" data-block="about" >Info</li>
+            <li class="link" data-block="blog">Blog</li>
+            <li class="link login-btn" data-block="contact">Login</li>
+        </ul>
+    </nav>
+
+
+    <main id="app">
+        <section id="about">
+            <div class="flex-container">
+                <canvas id="projector">Your browser does not support the Canvas element.</canvas>
+
+
+                <div class="col">
+                    <div class="title">{{titleOne}}<span class="dot">{{titleTwo}}</span>{{titleThree}}</div>
+                    <div class="w-100"></div>
+                    <div class="sub-title">
+                        <a href="https://cl.linkedin.com/in/jameees" target="_self" title="Linkedin"> <img src="assets/img/logo-linkedin.png"
+                                class="rrss-logo linkedin"> </a>
+                        <a href="https://github.com/jamees" target="_self"  title="Github"> <img src="assets/img/logo-github.png"
+                                class="rrss-logo github"> </a>
+                        <a href="mailto:mail@james.cl" target="_self"  title="Send me an email"> <img src="assets/img/logo-email.png"
+                                class="rrss-logo logo-email"> </a>
+                    </div>
+                </div>
+                
+        </section>
+
+        <section id="blog" class="blog">
+
+            <h2 class="section-title">Blog posts:</h2>
+            
+            <div class="blog-list">
+
+
+                <div class="card-columns">
+                    <div class="card">
+                      <img class="card-img-top" src="logo.png" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">My new logo</h5>
+                        <p class="card-text">This is my new logo. I'm very excited because is part of my new personal branding and have this is like a fresh start with many new things to come.</p>
+                        <p class="card-text"><small class="text-muted">Published 2024-05-21</small></p>
+
+                      </div>
+                    </div>
+                    <!-- <div class="card p-3">
+                      <blockquote class="blockquote mb-0 card-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">
+                          <small class="text-muted">
+                            Someone famous in <cite title="Source Title">Source Title</cite>
+                          </small>
+                        </footer>
+                      </blockquote>
+                    </div>
+                    <div class="card">
+                      <img class="card-img-top" src="assets/img/background.jpeg" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      </div>
+                    </div>
+                    <div class="card bg-primary text-white text-center p-3">
+                      <blockquote class="blockquote mb-0">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                        <footer class="blockquote-footer">
+                          <small>
+                            Someone famous in <cite title="Source Title">Source Title</cite>
+                          </small>
+                        </footer>
+                      </blockquote>
+                    </div>
+                    <div class="card text-center">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      </div>
+                    </div>
+                   
+                    <div class="card p-3 text-right">
+                      <blockquote class="blockquote mb-0">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">
+                          <small class="text-muted">
+                            Someone famous in <cite title="Source Title">Source Title</cite>
+                          </small>
+                        </footer>
+                      </blockquote>
+                    </div>
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      </div>
+                    </div> -->
+                  </div>    
+
+            
+            </div>
+        </section>
+
+    </main>
+
+    </div>
 
 
     <!--JS Functions -->
-    <script src="assets/js/main.js" ></script>
-    <script src="assets/js/app.js" ></script>
-
-
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/main.js"></script>
+    
 </body>
 
 </html>

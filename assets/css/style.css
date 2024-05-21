@@ -1,82 +1,252 @@
-html, body{
-	width:100%; 
-	height:100%; 
-	padding:0px; 
-	margin:0px;
-	overflow: hidden;
-  background-attachment: fixed;
-  background-color: #000d37;
-  animation: color-change 30s infinite;
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-color: #093b5d;
+    animation: color-change 30s infinite;
+    color: #fefefe;
+
 }
 
+
 @keyframes color-change {
-  0%{
-    background-color: #000d37;
-  }
-  33%{
-    background-color: #0b0820;
-  }
-  67%{
-    background-color: #00151f;
-  }
+    0% {
+        background-color: #093b5d;
+    }
+
+    33% {
+        background-color: #024373;
+    }
+
+    67% {
+        background-color: #093b5d;
+    }
 }
 
 #projector {
-  position: absolute; 
-  top: 0px;
-  left: 0px;
-  width:100%;
-  height:100%;
-} 
-
-.center-div {
-	width:580px;
-    height:374px;
-    position:absolute;
-    left:50%;
-    top:50%;
-    margin-left: -290px;
-    margin-top:  -187px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
 }
 
-.rrss-logo{
-  max-width: 30px;
+
+
+
+
+
+
+main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
 }
 
-.linkedin{
-  max-width: 36px;
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    padding: 40px;
 }
 
-.email{
-  max-width: 34px;
+ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.link {cursor: pointer;}
+
+
+
+
+
+
+
+nav {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    z-index: 10000;
+    color: #fefefe;
+    background-color: #04416e;
+}
+
+.logo {
+    font-size: 1.5em;
+    color: #ffffff;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background-color: #093c5f;
+    border-radius: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.nav-list li {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #fefefe;
+    font-size: 1em;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 3px 0;
+}
+
+@media (max-width: 768px) {
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #083b5dcc;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        border-radius: 20px;
+    }
+
+    .nav-list li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+.nav-list.active {
+    display: flex;
+}
+
+
+
+.logo-icon {
+    width: 40px;
+    margin-top: 10px;
+}
+
+
+
+.rrss-logo {
+    max-width: 30px;
+}
+
+.linkedin {
+    max-width: 36px;
+}
+
+.email {
+    max-width: 34px;
 }
 
 .title {
     font-family: 'Lexend Giga', sans-serif;
-    color: rgb(244, 245, 255);
+    color: #fefefe;
     font-size: 3em;
-  }
-
-@media (max-width: 600px) {
-
-    .title {
-        font-family: 'Lexend Giga', sans-serif;
-        color: #f2f2f2;
-        font-size: 2.5em;
-      }
-
 }
 
-  .sub-title{
+.dot {
+    color: #A3CDEF;
+}
+
+.sub-title{
     font-family: 'Lexend Giga', sans-serif;
     color: rgb(170, 170, 170);
     font-size: 0.9em;
     padding-top: 20px;
+    text-align: center;
 
   }
 
-  .dot{
-      color: #34ff60bd;
+  .sub-title > a {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
-  
+.login-btn{
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #fefefe;
+    border-radius: 10px;
+    color: #093b5d;
+}
+
+.login-btn:hover{
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #da8315;
+    border-radius: 10px;
+    color: #fefefe;
+}
+
+.blog {
+    background-color: #024373;
+}
+
+.blog-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    align-items: baseline;
+    height: 100%;
+}
+
+
+
+.card > .card-body  {
+    color: #024373;
+}
+
+.card{
+    margin: 15px;
+    color: #024373;
+}
+
+
+
+.section-title{
+    width: 100%;
+    padding-top: 120px;
+    margin-bottom: 40px;
+}
+
+
+.no-back{
+  background-color: #ffffff00 !important;
+}
