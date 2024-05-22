@@ -80,7 +80,7 @@ nav {
     position: relative;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 14px;
     padding-left: 40px;
     z-index: 10000;
     color: #fefefe;
@@ -186,8 +186,8 @@ nav {
 
 .sub-title{
     font-family: 'Lexend Giga', sans-serif;
-    color: rgb(170, 170, 170);
-    font-size: 0.9em;
+    color: #A3CDEF;
+    font-size: 0.7em;
     padding-top: 20px;
     text-align: center;
 
