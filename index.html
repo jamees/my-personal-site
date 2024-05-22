@@ -33,7 +33,7 @@
 
 <body>
 
-    <nav>
+    <nav id="navbar">
         <div class="logo"><img src="logo_white.png" class="logo-icon" /></div>
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
@@ -41,7 +41,7 @@
             <span class="bar"></span>
         </div>
         <ul class="nav-section nav-list">
-            <li class="link" data-block="about" >Info</li>
+            <li class="link" data-block="about">Info</li>
             <li class="link" data-block="blog">Blog</li>
             <li class="link login-btn" data-block="contact">Login</li>
         </ul>
@@ -58,6 +58,7 @@
                     <div class="title">{{titleOne}}<span class="dot">{{titleTwo}}</span>{{titleThree}}</div>
                     <div class="w-100"></div>
                     <div class="sub-title">
+                        {{subTitle}}
                         <a href="https://cl.linkedin.com/in/jameees" target="_self" title="Linkedin"> <img src="assets/img/logo-linkedin.png"
                                 class="rrss-logo linkedin"> </a>
                         <a href="https://github.com/jamees" target="_self"  title="Github"> <img src="assets/img/logo-github.png"
@@ -71,18 +72,18 @@
 
         <section id="blog" class="blog">
 
-            <h2 class="section-title">Blog posts:</h2>
+            <h2 class="section-title">Posts recientes:</h2>
             
             <div class="blog-list">
 
 
                 <div class="card-columns">
                     <div class="card">
-                      <img class="card-img-top" src="logo.png" alt="Card image cap">
+                      <img class="card-img-top" :src="posts[0].img.src" :alt="posts[0].img.alt">
                       <div class="card-body">
-                        <h5 class="card-title">Logo</h5>
-                        <p class="card-text">Este es mi nuevo logo. Estoy muy emocionado porque es parte de mi nueva marca personal y tener esto es como un nuevo comienzo con muchas cosas nuevas por venir.</p>
-                        <p class="card-text"><small class="text-muted">Publicado el 2024-05-21</small></p>
+                        <h5 class="card-title">{{posts[0].title}}</h5>
+                        <p class="card-text">{{posts[0].desc}}</p>
+                        <p class="card-text"><small class="text-muted">Publicado el {{posts[0].date}}</small></p>
 
                       </div>
                     </div>
@@ -104,7 +105,8 @@
                         <p class="card-text"><small class="text-muted">Publicado el 2024-05-22</small></p>
                       </div>
                     </div>
-                     <!-- <div class="card bg-primary text-white text-center p-3">
+                    <!-- 
+                        <div class="card bg-primary text-white text-center p-3">
                       <blockquote class="blockquote mb-0">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
                         <footer class="blockquote-footer">
@@ -114,7 +116,7 @@
                         </footer>
                       </blockquote>
                     </div>
-                    <div class="card text-center">
+                     <div class="card text-center">
                       <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -122,16 +124,7 @@
                       </div>
                     </div>
                    
-                    <div class="card p-3 text-right">
-                      <blockquote class="blockquote mb-0">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer">
-                          <small class="text-muted">
-                            Someone famous in <cite title="Source Title">Source Title</cite>
-                          </small>
-                        </footer>
-                      </blockquote>
-                    </div>
+                    
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title">Card title</h5>
@@ -152,7 +145,7 @@
 
     <!--JS Functions -->
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?t=1"></script>
     
 </body>
 
