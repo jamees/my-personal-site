@@ -217,7 +217,7 @@ nav {
 }
 
 .blog {
-  background-color: #024373;
+  background-color: #fefefe;
 }
 
 .blog-list {
@@ -247,6 +247,7 @@ nav {
   width: 100%;
   padding-top: 120px;
   margin-bottom: 40px;
+  color: #04416e;
 }
 
 
