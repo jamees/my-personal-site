@@ -228,6 +228,7 @@ nav {
   justify-content: space-evenly;
   align-items: baseline;
   height: 100%;
+  max-width: 1200px;
 }
 
 
