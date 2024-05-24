@@ -6,28 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>James.cl</title>
 
-     <!--CSS -->
-     <link href="https://fonts.googleapis.com/css?family=Lexend+Giga&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
- 
-     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
- 
- 
-     <!--JS Libraries -->
-     <script src="https://code.createjs.com/easeljs-0.7.1.min.js"></script>
-     <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
- 
- 
-     <!-- Global site tag (gtag.js) - Google Analytics -->
-     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115455553-1"></script>
-     <script>
-         window.dataLayer = window.dataLayer || [];
-         function gtag() { dataLayer.push(arguments); }
-         gtag('js', new Date());
-         gtag('config', 'UA-115455553-1');
-     </script>
+    <!--CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Giga&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
+
+    <!--JS Libraries -->
+    <script src="https://code.createjs.com/easeljs-0.7.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115455553-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-115455553-1');
+    </script>
 
 </head>
 
@@ -54,57 +54,62 @@
                 <canvas id="projector">Your browser does not support the Canvas element.</canvas>
 
 
-                <div class="col">
+                <div class="col info">
+                    <div id="avatar"></div>
                     <div class="title">{{titleOne}}<span class="dot">{{titleTwo}}</span>{{titleThree}}</div>
                     <div class="w-100"></div>
                     <div class="sub-title">
                         {{subTitle}}
-                        <a href="https://cl.linkedin.com/in/jameees" target="_self" title="Linkedin"> <img src="assets/img/logo-linkedin.png"
-                                class="rrss-logo linkedin"> </a>
-                        <a href="https://github.com/jamees" target="_self"  title="Github"> <img src="assets/img/logo-github.png"
-                                class="rrss-logo github"> </a>
-                        <a href="mailto:mail@james.cl" target="_self"  title="Send me an email"> <img src="assets/img/logo-email.png"
-                                class="rrss-logo logo-email"> </a>
+                        <a href="https://cl.linkedin.com/in/jameees" target="_self" title="Linkedin"> <img
+                                src="assets/img/logo-linkedin.png" class="rrss-logo linkedin"> </a>
+                        <a href="https://github.com/jamees" target="_self" title="Github"> <img
+                                src="assets/img/logo-github.png" class="rrss-logo github"> </a>
+                        <a href="mailto:mail@james.cl" target="_self" title="Send me an email"> <img
+                                src="assets/img/logo-email.png" class="rrss-logo logo-email"> </a>
                     </div>
                 </div>
-                
+
         </section>
 
         <section id="blog" class="blog">
 
             <h2 class="section-title">Posts recientes:</h2>
-            
+
             <div class="blog-list">
 
 
                 <div class="card-columns">
                     <div class="card">
-                      <img class="card-img-top" :src="posts[0].img.src" :alt="posts[0].img.alt">
-                      <div class="card-body">
-                        <h5 class="card-title">{{posts[0].title}}</h5>
-                        <p class="card-text">{{posts[0].desc}}</p>
-                        <p class="card-text"><small class="text-muted">Publicado el {{posts[0].date}}</small></p>
+                        <img class="card-img-top" :src="posts[0].img.src" :alt="posts[0].img.alt">
+                        <div class="card-body">
+                            <h5 class="card-title">{{posts[0].title}}</h5>
+                            <p class="card-text">{{posts[0].desc}}</p>
+                            <p class="card-text"><small class="text-muted">Publicado el {{posts[0].date}}</small></p>
 
-                      </div>
+                        </div>
                     </div>
                     <div class="card p-3">
-                      <blockquote class="blockquote mb-0 card-body">
-                        <p>"La tecnología está al servicio de los usuarios, no para satisfacer nuestros egos."</p>
-                        <footer class="blockquote-footer">
-                          <small class="text-muted">
-                            <cite title="Source Title">Cap 02 Technologist Life</cite>
-                          </small>
-                        </footer>
-                      </blockquote>
+                        <blockquote class="blockquote mb-0 card-body">
+                            <p>"La tecnología está al servicio de los usuarios, no para satisfacer nuestros egos."</p>
+                            <footer class="blockquote-footer">
+                                <small class="text-muted">
+                                    <cite title="Source Title">Cap 02 Technologist Life</cite>
+                                </small>
+                            </footer>
+                        </blockquote>
                     </div>
                     <div class="card">
-                      <img class="card-img-top" src="assets/img/blog/mockup.png" alt="Card image cap">
-                      <div class="card-body">
-                        <h5 class="card-title">Chat GPT desbloqueando</h5>
-                        <p class="card-text">Hace un tiempo que tenía ganas de cambiar mi sitio, como ando con poco tiempo, le pedi ayuda a Chat GPT y me recomendó este diseño. Me dedicaré estos días a implementarlo a ver que tal me queda.</p>
-                        <p class="card-text"><small class="text-muted">Publicado el 2024-05-22</small></p>
-                      </div>
+                        <img class="card-img-top" src="assets/img/blog/mockup.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Chat GPT desbloqueando</h5>
+                            <p class="card-text">Hace un tiempo que tenía ganas de cambiar mi sitio, como ando con poco
+                                tiempo, le pedi ayuda a Chat GPT y me recomendó este diseño. Me dedicaré estos días a
+                                implementarlo a ver que tal me queda.</p>
+                            <p class="card-text"><small class="text-muted">Publicado el 2024-05-22</small></p>
+                        </div>
                     </div>
+
+
                     <!-- 
                         <div class="card bg-primary text-white text-center p-3">
                       <blockquote class="blockquote mb-0">
@@ -115,16 +120,10 @@
                           </small>
                         </footer>
                       </blockquote>
-                    </div>
-                     <div class="card text-center">
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                      </div>
-                    </div>
-                   
-                    
+                    </div> -->
+        
+
+                    <!-- 
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title">Card title</h5>
@@ -132,9 +131,9 @@
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                       </div>
                     </div> -->
-                  </div>    
+                </div>
 
-            
+
             </div>
         </section>
 
@@ -146,7 +145,7 @@
     <!--JS Functions -->
     <script src="assets/js/app.js"></script>
     <script src="assets/js/main.js?t=1"></script>
-    
+
 </body>
 
 </html>
