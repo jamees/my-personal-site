@@ -181,12 +181,12 @@ nav {
 }
 
 .dot {
-  color: #A3CDEF;
+  color: #85DDD0;
 }
 
 .sub-title {
   font-family: 'Lexend Giga', sans-serif;
-  color: #A3CDEF;
+  color: #85DDD0;
   font-size: 0.7em;
   padding-top: 20px;
   text-align: center;
@@ -209,9 +209,9 @@ nav {
 .login-btn:hover {
   padding-left: 15px;
   padding-right: 15px;
-  background-color: #da8315;
+  background-color: #85DDD0;
   border-radius: 10px;
-  color: #fefefe;
+  color: #000;
 }
 
 .blog {
@@ -255,7 +255,7 @@ nav {
 }
 
 #avatar {
-  background-image: url('../../avatar.png');
+  background-image: url('../../avatar_color.png');
   width: 200px;
   height: 200px;
   background-size: cover;
