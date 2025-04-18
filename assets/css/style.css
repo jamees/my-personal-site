@@ -178,6 +178,7 @@ nav {
   font-family: 'Lexend Giga', sans-serif;
   color: #fefefe;
   font-size: 3em;
+  padding-top: 30px;
 }
 
 .dot {
@@ -262,6 +263,8 @@ nav {
   background-position: center center;
   border-radius: 50%;
   margin: auto;
+  outline: 1.5rem solid #85DDD0;
+  outline-offset: 8px;
 }
 
 .about-section {
