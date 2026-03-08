@@ -533,3 +533,88 @@
 {"ts":"2026-03-08T23:05:17.064Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/app.js","status":304,"duration_ms":0}}
 {"ts":"2026-03-08T23:05:17.238Z","session":"20260308-224334","kind":"ws_connect","data":{"client_id":"c44","url":"http://localhost:5501/index.html","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15","viewport":[1920,1148]}}
 {"ts":"2026-03-08T23:05:22.352Z","session":"20260308-224334","kind":"network_error","data":{"url":"https://www.google-analytics.com/g/collect?v=2&tid=G-XJBHTLHJ36&gtm=45je6341v9107539320za20g&_p=1773011117213&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=2117338445.1750084945&ul=es-419&sr=1920x1243&frm=0&pscdl=noapi&_eu=AAAIAAQ&_s=1&tag_exp=102015666~103116026~103200004~115938465~115938469~116024733~117484252~117625640&sid=1773001915&sct=1&seg=1&dl=http%3A%2F%2Flocalhost%2Findex.html&dr=http%3A%2F%2Flocalhost%3A5501%2Flogin.html&dt=James.cl&en=page_view&tfd=5194","method":"POST","status":0,"error":""}}
+{"ts":"2026-03-08T23:10:49.046Z","session":"20260308-224334","kind":"file_change","data":{"path":"index.html","ext":"html","change":"modify"}}
+{"ts":"2026-03-08T23:10:49.047Z","session":"20260308-224334","kind":"reload_trigger","data":{"path":"index.html","reload_type":"full"}}
+{"ts":"2026-03-08T23:10:49.066Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/index.html","status":200,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:49.113Z","session":"20260308-224334","kind":"ws_disconnect","data":{"client_id":"c44"}}
+{"ts":"2026-03-08T23:10:49.128Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/css/style.css","status":200,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:49.132Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/logo_white.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:49.133Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/main.js","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:49.133Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-linkedin.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:49.133Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-github.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:49.133Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-email.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:49.133Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/app.js","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:49.553Z","session":"20260308-224334","kind":"ws_connect","data":{"client_id":"c45","url":"http://localhost:5501/index.html","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15","viewport":[1920,1148]}}
+{"ts":"2026-03-08T23:10:49.992Z","session":"20260308-224334","kind":"file_change","data":{"path":"index.html","ext":"html","change":"modify"}}
+{"ts":"2026-03-08T23:10:49.992Z","session":"20260308-224334","kind":"reload_trigger","data":{"path":"index.html","reload_type":"full"}}
+{"ts":"2026-03-08T23:10:50.000Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/index.html","status":200,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:50.005Z","session":"20260308-224334","kind":"ws_disconnect","data":{"client_id":"c45"}}
+{"ts":"2026-03-08T23:10:50.012Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/app.js","status":200,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:50.012Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/main.js","status":200,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:50.013Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/css/style.css","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:50.014Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/logo_white.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:50.014Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-linkedin.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:50.014Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-github.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:50.016Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-email.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:50.162Z","session":"20260308-224334","kind":"ws_connect","data":{"client_id":"c46","url":"http://localhost:5501/index.html","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15","viewport":[1920,1148]}}
+{"ts":"2026-03-08T23:10:54.608Z","session":"20260308-224334","kind":"file_change","data":{"path":"horario.html","ext":"html","change":"modify"}}
+{"ts":"2026-03-08T23:10:54.608Z","session":"20260308-224334","kind":"reload_trigger","data":{"path":"horario.html","reload_type":"full"}}
+{"ts":"2026-03-08T23:10:54.674Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/index.html","status":200,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:54.680Z","session":"20260308-224334","kind":"ws_disconnect","data":{"client_id":"c46"}}
+{"ts":"2026-03-08T23:10:54.686Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/css/style.css","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:54.690Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/logo_white.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:54.691Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-linkedin.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:54.692Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-github.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:54.692Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-email.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:54.692Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/app.js","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:54.693Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/main.js","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:54.862Z","session":"20260308-224334","kind":"ws_connect","data":{"client_id":"c47","url":"http://localhost:5501/index.html","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15","viewport":[1920,1148]}}
+{"ts":"2026-03-08T23:10:56.096Z","session":"20260308-224334","kind":"file_change","data":{"path":"horario.html","ext":"html","change":"modify"}}
+{"ts":"2026-03-08T23:10:56.096Z","session":"20260308-224334","kind":"reload_trigger","data":{"path":"horario.html","reload_type":"full"}}
+{"ts":"2026-03-08T23:10:56.102Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/index.html","status":200,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:56.106Z","session":"20260308-224334","kind":"ws_disconnect","data":{"client_id":"c47"}}
+{"ts":"2026-03-08T23:10:56.113Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/css/style.css","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:56.115Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/logo_white.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:56.115Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-github.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:56.116Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-email.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:56.117Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-linkedin.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:10:56.120Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/main.js","status":304,"duration_ms":1}}
+{"ts":"2026-03-08T23:10:56.124Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/app.js","status":304,"duration_ms":1}}
+{"ts":"2026-03-08T23:10:56.219Z","session":"20260308-224334","kind":"ws_connect","data":{"client_id":"c48","url":"http://localhost:5501/index.html","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15","viewport":[1920,1148]}}
+{"ts":"2026-03-08T23:11:00.751Z","session":"20260308-224334","kind":"file_change","data":{"path":"blog.html","ext":"html","change":"modify"}}
+{"ts":"2026-03-08T23:11:00.751Z","session":"20260308-224334","kind":"reload_trigger","data":{"path":"blog.html","reload_type":"full"}}
+{"ts":"2026-03-08T23:11:00.761Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/index.html","status":200,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:00.768Z","session":"20260308-224334","kind":"ws_disconnect","data":{"client_id":"c48"}}
+{"ts":"2026-03-08T23:11:00.773Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/css/style.css","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:00.776Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/logo_white.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:00.776Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-linkedin.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:00.776Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-github.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:00.777Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-email.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:00.777Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/app.js","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:00.777Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/main.js","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:00.888Z","session":"20260308-224334","kind":"ws_connect","data":{"client_id":"c49","url":"http://localhost:5501/index.html","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15","viewport":[1920,1148]}}
+{"ts":"2026-03-08T23:11:01.478Z","session":"20260308-224334","kind":"file_change","data":{"path":"blog.html","ext":"html","change":"modify"}}
+{"ts":"2026-03-08T23:11:01.478Z","session":"20260308-224334","kind":"reload_trigger","data":{"path":"blog.html","reload_type":"full"}}
+{"ts":"2026-03-08T23:11:01.494Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/index.html","status":200,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:01.498Z","session":"20260308-224334","kind":"ws_disconnect","data":{"client_id":"c49"}}
+{"ts":"2026-03-08T23:11:01.508Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/css/style.css","status":304,"duration_ms":2}}
+{"ts":"2026-03-08T23:11:01.508Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/logo_white.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:01.508Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-linkedin.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:01.509Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-github.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:01.510Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-email.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:01.510Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/app.js","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:01.512Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/main.js","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:01.596Z","session":"20260308-224334","kind":"ws_connect","data":{"client_id":"c50","url":"http://localhost:5501/index.html","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15","viewport":[1920,1148]}}
+{"ts":"2026-03-08T23:11:06.155Z","session":"20260308-224334","kind":"file_change","data":{"path":"login.html","ext":"html","change":"modify"}}
+{"ts":"2026-03-08T23:11:06.155Z","session":"20260308-224334","kind":"reload_trigger","data":{"path":"login.html","reload_type":"full"}}
+{"ts":"2026-03-08T23:11:06.162Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/index.html","status":200,"duration_ms":2}}
+{"ts":"2026-03-08T23:11:06.169Z","session":"20260308-224334","kind":"ws_disconnect","data":{"client_id":"c50"}}
+{"ts":"2026-03-08T23:11:06.178Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/css/style.css","status":304,"duration_ms":2}}
+{"ts":"2026-03-08T23:11:06.182Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/logo_white.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:06.183Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-linkedin.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:06.183Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-github.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:06.184Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/img/logo-email.png","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:06.184Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/app.js","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:06.184Z","session":"20260308-224334","kind":"http_request","data":{"method":"GET","path":"/assets/js/main.js","status":304,"duration_ms":0}}
+{"ts":"2026-03-08T23:11:06.305Z","session":"20260308-224334","kind":"ws_connect","data":{"client_id":"c51","url":"http://localhost:5501/index.html","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.6 Safari/605.1.15","viewport":[1920,1148]}}
+{"ts":"2026-03-08T23:11:11.645Z","session":"20260308-224334","kind":"network_error","data":{"url":"https://www.google-analytics.com/g/collect?v=2&tid=G-XJBHTLHJ36&gtm=45je6341v9107539320za20g&_p=1773011466262&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=2117338445.1750084945&ul=es-419&sr=1920x1243&frm=0&pscdl=noapi&_eu=AAAIAAQ&_s=1&tag_exp=103116026~103200004~115938465~115938469~116024733~117477893~117484252&sid=1773001915&sct=1&seg=1&dl=http%3A%2F%2Flocalhost%2Findex.html&dr=http%3A%2F%2Flocalhost%3A5501%2Findex.html&dt=James.cl&en=page_view&tfd=5366","method":"POST","status":0,"error":""}}
