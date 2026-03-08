@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horario - James.cl</title>
+    <title>Horario Pascu</title>
 
     <!--CSS -->
     <link href="https://fonts.googleapis.com/css?family=Lexend+Giga&display=swap" rel="stylesheet">
@@ -227,6 +227,73 @@
             min-height: 50px;
         }
 
+        .subject-cell {
+            cursor: move;
+            transition: all 0.3s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            touch-action: none;
+        }
+
+        .subject-cell:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sync-status {
+            display: none;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 12px;
+            height: 12px;
+            background: #ff4444;
+            border-radius: 50%;
+            border: 2px solid white;
+            animation: pulse-badge 2s infinite;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .edit-actions {
+            display: none;
+            gap: 10px;
+        }
+
+        .edit-actions.show {
+            display: flex;
+        }
+
+        .download-changes-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .download-changes-btn:hover {
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .discard-changes-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        }
+
+        .discard-changes-btn:hover {
+            box-shadow: 0 6px 20px rgba(238, 90, 111, 0.6);
+        }
+
         .time-cell {
             background-color: #ffc0e0;
             font-weight: bold;
@@ -419,9 +486,10 @@
 
         .export-button {
             margin-top: 20px;
-            text-align: right;
+            text-align: center;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
+            align-items: center;
             gap: 10px;
         }
 
@@ -457,6 +525,28 @@
 
         .toggle-legend-btn:hover {
             box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+        }
+
+        .edit-mode-btn {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .edit-mode-btn:hover {
+            box-shadow: 0 6px 20px rgba(17, 153, 142, 0.6);
+        }
+
+        .edit-mode-btn.active {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 25px rgba(245, 87, 108, 0.8);
+            }
         }
 
         @media (max-width: 768px) {
@@ -589,6 +679,8 @@
 
             .export-button {
                 gap: 8px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .export-button button {
@@ -730,6 +822,14 @@
                 </div>
 
                 <div class="export-button">
+                    <button onclick="toggleEditMode()" class="edit-mode-btn" id="edit-mode-btn" title="Activar/Desactivar Modo Edición" style="position: relative;">
+                        ✏️
+                        <span class="notification-badge" id="notification-badge" style="display: none;"></span>
+                    </button>
+                    <div class="edit-actions" id="edit-actions">
+                        <button onclick="downloadChanges()" class="download-changes-btn" title="Descargar cambios como JSON">💾</button>
+                        <button onclick="discardChanges()" class="discard-changes-btn" title="Eliminar cambios no guardados">🗑️</button>
+                    </div>
                     <button onclick="toggleLegend()" class="toggle-legend-btn" id="toggle-legend-btn" title="Mostrar/Ocultar Leyenda">📚</button>
                     <button onclick="exportToPDF()" title="Exportar a PDF">📄</button>
                 </div>
@@ -745,181 +845,20 @@
 
     </main>
 
+
+
     <!--JS Functions -->
     <script src="assets/js/app.js"></script>
     <script src="assets/js/main.js?t=1"></script>
     
     <script>
-        // Cargar datos del horario desde JSON
-        async function cargarHorario() {
-            try {
-                const response = await fetch('horario-data.json');
-                const data = await response.json();
-                
-                // Crear estilos dinámicos para las materias
-                let styleElement = document.getElementById('dynamic-styles');
-                if (!styleElement) {
-                    styleElement = document.createElement('style');
-                    styleElement.id = 'dynamic-styles';
-                    document.head.appendChild(styleElement);
-                }
-                
-                let cssRules = '';
-                data.materias.forEach(materia => {
-                    cssRules += `
-                        .${materia.clase} {
-                            background-color: ${materia.color};
-                            color: ${materia.textColor};
-                        }
-                    `;
-                });
-                styleElement.textContent = cssRules;
-                
-                // Actualizar título
-                document.getElementById('titulo-horario').textContent = data.titulo;
-                
-                // Actualizar subtítulo
-                if (data.subtitulo) {
-                    document.getElementById('subtitulo-horario').textContent = data.subtitulo;
-                }
-                
-                // Generar filas del horario
-                const tbody = document.getElementById('horario-tbody');
-                tbody.innerHTML = '';
-                
-                data.horarios.forEach(horario => {
-                    const tr = document.createElement('tr');
-                    
-                    // Celda de hora
-                    const tdHora = document.createElement('td');
-                    tdHora.className = 'time-cell';
-                    tdHora.textContent = horario.hora;
-                    tr.appendChild(tdHora);
-                    
-                    // Celdas de días
-                    const dias = [
-                        { key: 'lunes', label: 'Lunes' },
-                        { key: 'martes', label: 'Martes' },
-                        { key: 'miercoles', label: 'Miércoles' },
-                        { key: 'jueves', label: 'Jueves' },
-                        { key: 'viernes', label: 'Viernes' }
-                    ];
-                    
-                    dias.forEach(dia => {
-                        const td = document.createElement('td');
-                        const diaData = horario[dia.key];
-                        
-                        // Agregar data-label para móvil
-                        td.setAttribute('data-label', dia.label);
-                        
-                        if (diaData.clase) {
-                            td.className = `subject-cell ${diaData.clase}`;
-                        } else {
-                            td.className = 'subject-cell';
-                        }
-                        
-                        if (diaData.style) {
-                            td.setAttribute('style', diaData.style);
-                        }
-                        
-                        td.textContent = diaData.materia;
-                        tr.appendChild(td);
-                    });
-                    
-                    tbody.appendChild(tr);
-                });
-                
-                // Generar vista móvil agrupada por día
-                const mobileSchedule = document.getElementById('mobile-schedule');
-                mobileSchedule.innerHTML = '';
-                
-                const dias = [
-                    { key: 'lunes', label: 'Lunes' },
-                    { key: 'martes', label: 'Martes' },
-                    { key: 'miercoles', label: 'Miércoles' },
-                    { key: 'jueves', label: 'Jueves' },
-                    { key: 'viernes', label: 'Viernes' }
-                ];
-                
-                dias.forEach(dia => {
-                    const dayCard = document.createElement('div');
-                    dayCard.className = 'day-card';
-                    
-                    const dayHeader = document.createElement('div');
-                    dayHeader.className = 'day-header';
-                    dayHeader.textContent = dia.label;
-                    dayCard.appendChild(dayHeader);
-                    
-                    data.horarios.forEach(horario => {
-                        const diaData = horario[dia.key];
-                        
-                        if (diaData.materia) {
-                            const timeSlot = document.createElement('div');
-                            timeSlot.className = 'time-slot';
-                            
-                            const timeDiv = document.createElement('div');
-                            timeDiv.className = 'time-slot-time';
-                            timeDiv.textContent = horario.hora;
-                            
-                            const subjectDiv = document.createElement('div');
-                            subjectDiv.className = 'time-slot-subject';
-                            if (diaData.clase) {
-                                subjectDiv.classList.add(diaData.clase);
-                            }
-                            if (diaData.style) {
-                                subjectDiv.setAttribute('style', diaData.style);
-                            }
-                            subjectDiv.textContent = diaData.materia;
-                            
-                            timeSlot.appendChild(timeDiv);
-                            timeSlot.appendChild(subjectDiv);
-                            dayCard.appendChild(timeSlot);
-                        }
-                    });
-                    
-                    mobileSchedule.appendChild(dayCard);
-                });
-                
-                // Generar leyenda
-                const legendGrid = document.getElementById('legend-grid');
-                legendGrid.innerHTML = '';
-                
-                data.materias.forEach(materia => {
-                    const div = document.createElement('div');
-                    div.className = 'legend-item';
-                    
-                    // Crear libro
-                    const bookDiv = document.createElement('div');
-                    bookDiv.className = 'legend-book';
-                    
-                    const bookCover = document.createElement('div');
-                    bookCover.className = `legend-book-cover ${materia.clase}`;
-                    
-                    const bookTitle = document.createElement('div');
-                    bookTitle.className = 'legend-book-title';
-                    bookTitle.textContent = materia.nombre;
-                    bookTitle.style.color = materia.textColor;
-                    
-                    bookCover.appendChild(bookTitle);
-                    bookDiv.appendChild(bookCover);
-                    
-                    // Mantener el color oculto para compatibilidad con el código de resaltado
-                    const colorDiv = document.createElement('div');
-                    colorDiv.className = `legend-color ${materia.clase}`;
-                    colorDiv.style.display = 'none';
-                    
-                    div.appendChild(bookDiv);
-                    div.appendChild(colorDiv);
-                    legendGrid.appendChild(div);
-                });
-                
-                // Inicializar eventos de la leyenda
-                inicializarLeyenda();
-                
-            } catch (error) {
-                console.error('Error al cargar el horario:', error);
-            }
-        }
+        // Variables globales para modo edición
+        let editMode = false;
+        let draggedElement = null;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchElement = null;
+        let originalData = null;
         
         function inicializarLeyenda() {
             const legendItems = document.querySelectorAll('.legend-item');
@@ -961,7 +900,476 @@
                 });
             });
         }
-        
+
+        // Cargar datos del horario desde JSON
+        async function cargarHorario() {
+            try {
+                const response = await fetch('horario-data.json');
+                const data = await response.json();
+                
+                // Guardar datos originales
+                originalData = JSON.parse(JSON.stringify(data));
+                
+                // Verificar si hay cambios guardados en localStorage
+                const savedChanges = localStorage.getItem('horario-changes');
+                if (savedChanges) {
+                    const savedData = JSON.parse(savedChanges);
+                    data.horarios = savedData;
+                    updateSyncStatus('unsaved');
+                }
+                
+                // Crear estilos dinámicos para las materias
+                let styleElement = document.getElementById('dynamic-styles');
+                if (!styleElement) {
+                    styleElement = document.createElement('style');
+                    styleElement.id = 'dynamic-styles';
+                    document.head.appendChild(styleElement);
+                }
+                
+                let cssRules = '';
+                data.materias.forEach(materia => {
+                    cssRules += `
+                        .${materia.clase} {
+                            background-color: ${materia.color};
+                            color: ${materia.textColor};
+                        }
+                    `;
+                });
+                styleElement.textContent = cssRules;
+                
+                // Actualizar título
+                document.getElementById('titulo-horario').textContent = data.titulo;
+                
+                // Actualizar subtítulo
+                if (data.subtitulo) {
+                    document.getElementById('subtitulo-horario').textContent = data.subtitulo;
+                }
+                
+                // Generar filas del horario
+                renderHorario(data.horarios);
+                
+                // Generar vista móvil agrupada por día
+                renderMobileSchedule(data.horarios);
+                
+                // Generar leyenda
+                const legendGrid = document.getElementById('legend-grid');
+                legendGrid.innerHTML = '';
+                
+                data.materias.forEach(materia => {
+                    const div = document.createElement('div');
+                    div.className = 'legend-item';
+                    
+                    // Crear libro
+                    const bookDiv = document.createElement('div');
+                    bookDiv.className = 'legend-book';
+                    
+                    const bookCover = document.createElement('div');
+                    bookCover.className = `legend-book-cover ${materia.clase}`;
+                    
+                    const bookTitle = document.createElement('div');
+                    bookTitle.className = 'legend-book-title';
+                    bookTitle.textContent = materia.nombre;
+                    bookTitle.style.color = materia.textColor;
+                    
+                    bookCover.appendChild(bookTitle);
+                    bookDiv.appendChild(bookCover);
+                    
+                    // Mantener el color oculto para compatibilidad con el código de resaltado
+                    const colorDiv = document.createElement('div');
+                    colorDiv.className = `legend-color ${materia.clase}`;
+                    colorDiv.style.display = 'none';
+                    
+                    div.appendChild(bookDiv);
+                    div.appendChild(colorDiv);
+                    legendGrid.appendChild(div);
+                });
+                
+                // Inicializar eventos de la leyenda
+                inicializarLeyenda();
+                
+            } catch (error) {
+                console.error('Error al cargar el horario:', error);
+            }
+        }
+
+        function renderHorario(horarios) {
+            const tbody = document.getElementById('horario-tbody');
+            tbody.innerHTML = '';
+            
+            horarios.forEach(horario => {
+                const tr = document.createElement('tr');
+                
+                // Celda de hora
+                const tdHora = document.createElement('td');
+                tdHora.className = 'time-cell';
+                tdHora.textContent = horario.hora;
+                tr.appendChild(tdHora);
+                
+                // Celdas de días
+                const dias = [
+                    { key: 'lunes', label: 'Lunes' },
+                    { key: 'martes', label: 'Martes' },
+                    { key: 'miercoles', label: 'Miércoles' },
+                    { key: 'jueves', label: 'Jueves' },
+                    { key: 'viernes', label: 'Viernes' }
+                ];
+                
+                dias.forEach(dia => {
+                    const td = document.createElement('td');
+                    const diaData = horario[dia.key];
+                    
+                    // Agregar data-label para móvil
+                    td.setAttribute('data-label', dia.label);
+                    
+                    if (diaData.clase) {
+                        td.className = `subject-cell ${diaData.clase}`;
+                    } else {
+                        td.className = 'subject-cell';
+                    }
+                    
+                    if (diaData.style) {
+                        td.setAttribute('style', diaData.style);
+                    }
+                    
+                    td.textContent = diaData.materia;
+                    tr.appendChild(td);
+                });
+                
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderMobileSchedule(horarios) {
+            const mobileSchedule = document.getElementById('mobile-schedule');
+            mobileSchedule.innerHTML = '';
+            
+            const dias = [
+                { key: 'lunes', label: 'Lunes' },
+                { key: 'martes', label: 'Martes' },
+                { key: 'miercoles', label: 'Miércoles' },
+                { key: 'jueves', label: 'Jueves' },
+                { key: 'viernes', label: 'Viernes' }
+            ];
+            
+            dias.forEach(dia => {
+                const dayCard = document.createElement('div');
+                dayCard.className = 'day-card';
+                
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'day-header';
+                dayHeader.textContent = dia.label;
+                dayCard.appendChild(dayHeader);
+                
+                horarios.forEach(horario => {
+                    const diaData = horario[dia.key];
+                    
+                    if (diaData.materia) {
+                        const timeSlot = document.createElement('div');
+                        timeSlot.className = 'time-slot';
+                        
+                        const timeDiv = document.createElement('div');
+                        timeDiv.className = 'time-slot-time';
+                        timeDiv.textContent = horario.hora;
+                        
+                        const subjectDiv = document.createElement('div');
+                        subjectDiv.className = 'time-slot-subject';
+                        if (diaData.clase) {
+                            subjectDiv.classList.add(diaData.clase);
+                        }
+                        if (diaData.style) {
+                            subjectDiv.setAttribute('style', diaData.style);
+                        }
+                        subjectDiv.textContent = diaData.materia;
+                        
+                        timeSlot.appendChild(timeDiv);
+                        timeSlot.appendChild(subjectDiv);
+                        dayCard.appendChild(timeSlot);
+                    }
+                });
+                
+                mobileSchedule.appendChild(dayCard);
+            });
+        }
+
+        function updateSyncStatus(status) {
+            const notificationBadge = document.getElementById('notification-badge');
+            
+            if (status === 'unsaved') {
+                notificationBadge.style.display = 'block';
+            } else {
+                notificationBadge.style.display = 'none';
+            }
+        }
+
+        function downloadChanges() {
+            const horarios = getCurrentHorarioData();
+            const jsonData = JSON.stringify(horarios, null, 2);
+            
+            // Crear un blob con el JSON
+            const blob = new Blob([jsonData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            // Crear un enlace temporal y hacer clic en él
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'horario-cambios.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('Cambios descargados. Reemplaza el array "horarios" en horario-data.json con este contenido.');
+        }
+
+        function discardChanges() {
+            if (confirm('¿Estás seguro de que quieres eliminar todos los cambios no guardados?')) {
+                localStorage.removeItem('horario-changes');
+                location.reload();
+            }
+        }
+
+        function toggleEditMode() {
+            editMode = !editMode;
+            const btn = document.getElementById('edit-mode-btn');
+            const editActions = document.getElementById('edit-actions');
+            
+            if (editMode) {
+                btn.classList.add('active');
+                btn.title = 'Desactivar Modo Edición';
+                editActions.classList.add('show');
+                enableDragAndDrop();
+            } else {
+                btn.classList.remove('active');
+                btn.title = 'Activar Modo Edición';
+                editActions.classList.remove('show');
+                disableDragAndDrop();
+            }
+        }
+
+        function enableDragAndDrop() {
+            const cells = document.querySelectorAll('.subject-cell');
+            
+            cells.forEach(cell => {
+                cell.setAttribute('draggable', 'true');
+                
+                // Eventos de escritorio
+                cell.addEventListener('dragstart', handleDragStart);
+                cell.addEventListener('dragover', handleDragOver);
+                cell.addEventListener('drop', handleDrop);
+                cell.addEventListener('dragend', handleDragEnd);
+                cell.addEventListener('dragleave', handleDragLeave);
+                
+                // Eventos táctiles para móvil
+                cell.addEventListener('touchstart', handleTouchStart, { passive: false });
+                cell.addEventListener('touchmove', handleTouchMove, { passive: false });
+                cell.addEventListener('touchend', handleTouchEnd, { passive: false });
+            });
+        }
+
+        function disableDragAndDrop() {
+            const cells = document.querySelectorAll('.subject-cell');
+            
+            cells.forEach(cell => {
+                cell.setAttribute('draggable', 'false');
+                
+                // Remover eventos de escritorio
+                cell.removeEventListener('dragstart', handleDragStart);
+                cell.removeEventListener('dragover', handleDragOver);
+                cell.removeEventListener('drop', handleDrop);
+                cell.removeEventListener('dragend', handleDragEnd);
+                cell.removeEventListener('dragleave', handleDragLeave);
+                
+                // Remover eventos táctiles
+                cell.removeEventListener('touchstart', handleTouchStart);
+                cell.removeEventListener('touchmove', handleTouchMove);
+                cell.removeEventListener('touchend', handleTouchEnd);
+            });
+        }
+
+        // Eventos táctiles para móvil
+        function handleTouchStart(e) {
+            if (!editMode) return;
+            
+            touchElement = this;
+            touchElement.classList.add('dragging');
+            
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+            
+            e.preventDefault();
+        }
+
+        function handleTouchMove(e) {
+            if (!editMode || !touchElement) return;
+            
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+            
+            // Remover clase drag-over de todas las celdas
+            document.querySelectorAll('.subject-cell').forEach(cell => {
+                cell.classList.remove('drag-over');
+            });
+            
+            // Agregar clase drag-over al elemento bajo el dedo
+            if (elementAtPoint && elementAtPoint.classList.contains('subject-cell') && elementAtPoint !== touchElement) {
+                elementAtPoint.classList.add('drag-over');
+            }
+        }
+
+        function handleTouchEnd(e) {
+            if (!editMode || !touchElement) return;
+            
+            e.preventDefault();
+            
+            const touch = e.changedTouches[0];
+            const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+            
+            touchElement.classList.remove('dragging');
+            
+            // Si se soltó sobre otra celda, intercambiar
+            if (elementAtPoint && elementAtPoint.classList.contains('subject-cell') && elementAtPoint !== touchElement) {
+                swapCells(touchElement, elementAtPoint);
+            }
+            
+            // Limpiar
+            document.querySelectorAll('.subject-cell').forEach(cell => {
+                cell.classList.remove('drag-over');
+            });
+            
+            touchElement = null;
+        }
+
+        // Eventos de escritorio
+        function handleDragStart(e) {
+            if (!editMode) return;
+            
+            draggedElement = this;
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
+        }
+
+        function handleDragOver(e) {
+            if (!editMode) return;
+            
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            
+            if (this !== draggedElement) {
+                this.classList.add('drag-over');
+            }
+            
+            return false;
+        }
+
+        function handleDragLeave(e) {
+            this.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            if (!editMode) return;
+            
+            e.stopPropagation();
+            e.preventDefault();
+            
+            if (draggedElement !== this) {
+                swapCells(draggedElement, this);
+            }
+            
+            this.classList.remove('drag-over');
+            return false;
+        }
+
+        function handleDragEnd(e) {
+            this.classList.remove('dragging');
+            
+            const cells = document.querySelectorAll('.subject-cell');
+            cells.forEach(cell => {
+                cell.classList.remove('drag-over');
+            });
+        }
+
+        // Función auxiliar para intercambiar celdas
+        function swapCells(cell1, cell2) {
+            // Intercambiar contenido
+            const cell1Content = cell1.innerHTML;
+            const cell1Classes = cell1.className;
+            const cell1Style = cell1.getAttribute('style') || '';
+            
+            const cell2Content = cell2.innerHTML;
+            const cell2Classes = cell2.className;
+            const cell2Style = cell2.getAttribute('style') || '';
+            
+            // Actualizar elementos
+            cell1.innerHTML = cell2Content;
+            cell1.className = cell2Classes;
+            if (cell2Style) {
+                cell1.setAttribute('style', cell2Style);
+            } else {
+                cell1.removeAttribute('style');
+            }
+            
+            cell2.innerHTML = cell1Content;
+            cell2.className = cell1Classes;
+            if (cell1Style) {
+                cell2.setAttribute('style', cell1Style);
+            } else {
+                cell2.removeAttribute('style');
+            }
+            
+            // Re-habilitar drag and drop en los elementos intercambiados
+            enableDragAndDrop();
+            
+            // Guardar cambios automáticamente en localStorage
+            saveToLocalStorage();
+        }
+
+        function saveToLocalStorage() {
+            const horarios = getCurrentHorarioData();
+            localStorage.setItem('horario-changes', JSON.stringify(horarios));
+            updateSyncStatus('unsaved');
+        }
+
+        function getCurrentHorarioData() {
+            const tbody = document.getElementById('horario-tbody');
+            const rows = tbody.querySelectorAll('tr');
+            const horarios = [];
+            
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const hora = cells[0].textContent;
+                
+                const horario = {
+                    hora: hora,
+                    lunes: getCellData(cells[1]),
+                    martes: getCellData(cells[2]),
+                    miercoles: getCellData(cells[3]),
+                    jueves: getCellData(cells[4]),
+                    viernes: getCellData(cells[5])
+                };
+                
+                horarios.push(horario);
+            });
+            
+            return horarios;
+        }
+
+        function getCellData(cell) {
+            const materia = cell.textContent.trim();
+            const classes = cell.className.split(' ');
+            const clase = classes.find(c => c !== 'subject-cell' && c !== 'dragging' && c !== 'drag-over') || '';
+            const style = cell.getAttribute('style') || '';
+            
+            return {
+                materia: materia,
+                clase: clase,
+                style: style
+            };
+        }
+
         function toggleLegend() {
             const legendContainer = document.querySelector('.legend-container');
             legendContainer.classList.toggle('hidden');
