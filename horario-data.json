@@ -16,7 +16,8 @@
       "martes": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
       "miercoles": { "materia": "Matemática", "clase": "matematicas" },
       "jueves": { "materia": "Música", "clase": "musica" },
-      "viernes": { "materia": "Ed. Física", "clase": "ed-fisica" }
+      "viernes": { "materia": "Ed. Física", "clase": "ed-fisica" },
+      "separador": true
     },
     {
       "hora": "09:30",
@@ -32,7 +33,8 @@
       "martes": { "materia": "Artes Visuales", "clase": "artes-visuales" },
       "miercoles": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
       "jueves": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
-      "viernes": { "materia": "Matemáticas", "clase": "matematicas" }
+      "viernes": { "materia": "Matemáticas", "clase": "matematicas" },
+      "separador": true
     },
     {
       "hora": "11:15",
@@ -48,7 +50,8 @@
       "martes": { "materia": "Crem", "clase": "crem" },
       "miercoles": { "materia": "Ed. Física", "clase": "ed-fisica" },
       "jueves": { "materia": "Matemáticas", "clase": "matematicas" },
-      "viernes": { "materia": "Tecnología", "clase": "tecnologia" }
+      "viernes": { "materia": "Tecnología", "clase": "tecnologia" },
+      "separador": true
     },
     {
       "hora": "13:00",
@@ -64,7 +67,8 @@
       "martes": { "materia": "Inglés", "clase": "ingles" },
       "miercoles": { "materia": "Crem", "clase": "crem" },
       "jueves": { "materia": "Ciencias Naturales", "clase": "ciencias-naturales" },
-      "viernes": { "materia": "Inglés", "clase": "ingles" }
+      "viernes": { "materia": "Inglés", "clase": "ingles" },
+      "separador": true
     },
     {
       "hora": "15:15",

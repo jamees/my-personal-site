@@ -8,6 +8,7 @@
 
     <!--CSS -->
     <link href="https://fonts.googleapis.com/css?family=Lexend+Giga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -35,7 +36,7 @@
 
         #app::before {
             content: '';
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -190,14 +191,15 @@
             table-layout: fixed;
             border-radius: 20px;
             overflow: hidden;
+            font-family: 'Quicksand', sans-serif;
         }
 
         .schedule-table th {
             background-color: #ffc0e0;
-            padding: 15px;
+            padding: 18px;
             text-align: center;
-            font-weight: bold;
-            border: 2px solid #fff;
+            font-weight: 700;
+            border: 3px solid #fff;
             font-size: 1.1em;
             width: 16.66%;
         }
@@ -219,12 +221,16 @@
             border-bottom-right-radius: 20px;
         }
 
+        .schedule-table tr.separator-row {
+            border-bottom: 5px solid #9b59b6;
+        }
+
         .schedule-table td {
-            padding: 15px;
+            padding: 18px;
             text-align: center;
-            border: 2px solid #fff;
-            font-weight: bold;
-            min-height: 50px;
+            border: 3px solid #fff;
+            font-weight: 600;
+            min-height: 60px;
         }
 
         .subject-cell {
@@ -234,6 +240,9 @@
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
+        }
+
+        .subject-cell.edit-mode-active {
             touch-action: none;
         }
 
@@ -296,13 +305,14 @@
 
         .time-cell {
             background-color: #ffc0e0;
-            font-weight: bold;
+            font-weight: 700;
             color: #024373;
         }
 
         .subject-cell {
             color: #024373;
             font-size: 0.95em;
+            font-weight: 600;
         }
 
         /* Colores de materias */
@@ -617,12 +627,13 @@
 
             .day-header {
                 font-size: 1.3em;
-                font-weight: bold;
+                font-weight: 700;
                 color: #04416e;
                 margin-bottom: 12px;
                 padding-bottom: 8px;
                 border-bottom: 3px solid #ffc0e0;
                 text-align: center;
+                font-family: 'Quicksand', sans-serif;
             }
 
             .time-slot {
@@ -632,10 +643,11 @@
                 margin-bottom: 6px;
                 border-radius: 8px;
                 font-size: 0.85em;
+                font-family: 'Quicksand', sans-serif;
             }
 
             .time-slot-time {
-                font-weight: bold;
+                font-weight: 700;
                 color: #04416e;
                 min-width: 50px;
                 margin-right: 10px;
@@ -646,7 +658,7 @@
                 flex: 1;
                 padding: 8px 12px;
                 border-radius: 6px;
-                font-weight: 500;
+                font-weight: 600;
             }
 
             .legend-container {
@@ -758,17 +770,14 @@
 <body>
 
     <nav id="navbar">
-        <div class="logo"><img src="logo_white.png" class="logo-icon" /></div>
+        <div class="logo"><a href="index.html"><img src="logo_white.png" class="logo-icon" /></a></div>
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
         <ul class="nav-section nav-list">
-            <li class="link" data-block="schedule">Horario</li>
-            <li class="link" data-block="about">Info</li>
-            <li class="link" data-block="blog">Blog</li>
-            <li class="link login-btn" data-block="contact">Login</li>
+            <li class="link login-btn"><a href="login.html">Login</a></li>
         </ul>
     </nav>
 
@@ -999,6 +1008,11 @@
             horarios.forEach(horario => {
                 const tr = document.createElement('tr');
                 
+                // Agregar clase si tiene separador
+                if (horario.separador) {
+                    tr.classList.add('separator-row');
+                }
+                
                 // Celda de hora
                 const tdHora = document.createElement('td');
                 tdHora.className = 'time-cell';
@@ -1151,6 +1165,7 @@
             
             cells.forEach(cell => {
                 cell.setAttribute('draggable', 'true');
+                cell.classList.add('edit-mode-active');
                 
                 // Eventos de escritorio
                 cell.addEventListener('dragstart', handleDragStart);
@@ -1171,6 +1186,7 @@
             
             cells.forEach(cell => {
                 cell.setAttribute('draggable', 'false');
+                cell.classList.remove('edit-mode-active');
                 
                 // Remover eventos de escritorio
                 cell.removeEventListener('dragstart', handleDragStart);
@@ -1191,53 +1207,63 @@
             if (!editMode) return;
             
             touchElement = this;
-            touchElement.classList.add('dragging');
             
             const touch = e.touches[0];
             touchStartX = touch.clientX;
             touchStartY = touch.clientY;
             
-            e.preventDefault();
+            // No prevenir default aquí para permitir scroll
         }
 
         function handleTouchMove(e) {
             if (!editMode || !touchElement) return;
             
-            e.preventDefault();
-            
             const touch = e.touches[0];
-            const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+            const deltaX = Math.abs(touch.clientX - touchStartX);
+            const deltaY = Math.abs(touch.clientY - touchStartY);
             
-            // Remover clase drag-over de todas las celdas
-            document.querySelectorAll('.subject-cell').forEach(cell => {
-                cell.classList.remove('drag-over');
-            });
-            
-            // Agregar clase drag-over al elemento bajo el dedo
-            if (elementAtPoint && elementAtPoint.classList.contains('subject-cell') && elementAtPoint !== touchElement) {
-                elementAtPoint.classList.add('drag-over');
+            // Solo prevenir default si el movimiento es más horizontal que vertical (arrastrando)
+            if (deltaX > deltaY && deltaX > 10) {
+                e.preventDefault();
+                touchElement.classList.add('dragging');
+                
+                const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+                
+                // Remover clase drag-over de todas las celdas
+                document.querySelectorAll('.subject-cell').forEach(cell => {
+                    cell.classList.remove('drag-over');
+                });
+                
+                // Agregar clase drag-over al elemento bajo el dedo
+                if (elementAtPoint && elementAtPoint.classList.contains('subject-cell') && elementAtPoint !== touchElement) {
+                    elementAtPoint.classList.add('drag-over');
+                }
             }
         }
 
         function handleTouchEnd(e) {
             if (!editMode || !touchElement) return;
             
-            e.preventDefault();
+            const wasDragging = touchElement.classList.contains('dragging');
             
-            const touch = e.changedTouches[0];
-            const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
-            
-            touchElement.classList.remove('dragging');
-            
-            // Si se soltó sobre otra celda, intercambiar
-            if (elementAtPoint && elementAtPoint.classList.contains('subject-cell') && elementAtPoint !== touchElement) {
-                swapCells(touchElement, elementAtPoint);
+            if (wasDragging) {
+                e.preventDefault();
+                
+                const touch = e.changedTouches[0];
+                const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+                
+                touchElement.classList.remove('dragging');
+                
+                // Si se soltó sobre otra celda, intercambiar
+                if (elementAtPoint && elementAtPoint.classList.contains('subject-cell') && elementAtPoint !== touchElement) {
+                    swapCells(touchElement, elementAtPoint);
+                }
+                
+                // Limpiar
+                document.querySelectorAll('.subject-cell').forEach(cell => {
+                    cell.classList.remove('drag-over');
+                });
             }
-            
-            // Limpiar
-            document.querySelectorAll('.subject-cell').forEach(cell => {
-                cell.classList.remove('drag-over');
-            });
             
             touchElement = null;
         }
@@ -1350,6 +1376,11 @@
                     jueves: getCellData(cells[4]),
                     viernes: getCellData(cells[5])
                 };
+                
+                // Preservar el separador si existe
+                if (row.classList.contains('separator-row')) {
+                    horario.separador = true;
+                }
                 
                 horarios.push(horario);
             });

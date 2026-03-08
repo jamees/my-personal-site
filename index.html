@@ -34,110 +34,54 @@
 <body>
 
     <nav id="navbar">
-        <div class="logo"><img src="logo_white.png" class="logo-icon" /></div>
+        <div class="logo"><a href="index.html"><img src="logo_white.png" class="logo-icon" /></a></div>
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
         <ul class="nav-section nav-list">
-            <li class="link" data-block="about">Info</li>
-            <li class="link" data-block="blog">Blog</li>
-            <li class="link login-btn" data-block="contact">Login</li>
+            <li class="link login-btn"><a href="login.html">Login</a></li>
         </ul>
     </nav>
 
 
     <main id="app">
         <section id="about">
-            <div class="flex-container">
-                <canvas id="projector">Your browser does not support the Canvas element.</canvas>
-
-
-                <div class="col info">
-                    <div id="avatar"></div>
-                    <div class="title">{{titleOne}}<span class="dot">{{titleTwo}}</span>{{titleThree}}</div>
-                    <div class="w-100"></div>
-                    <div class="sub-title">
-                        {{subTitle}}
-                        <a href="https://cl.linkedin.com/in/jameees" target="_self" title="Linkedin"> <img
-                                src="assets/img/logo-linkedin.png" class="rrss-logo linkedin"> </a>
-                        <a href="https://github.com/jamees" target="_self" title="Github"> <img
-                                src="assets/img/logo-github.png" class="rrss-logo github"> </a>
-                        <a href="mailto:mail@james.cl" target="_self" title="Send me an email"> <img
-                                src="assets/img/logo-email.png" class="rrss-logo logo-email"> </a>
+            <div class="hello-world-container">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <span class="terminal-button close"></span>
+                        <span class="terminal-button minimize"></span>
+                        <span class="terminal-button maximize"></span>
+                        <span class="terminal-title">james@terminal:~</span>
                     </div>
-                   
-                </div>
-
-        </section>
-
-        <section id="blog" class="blog">
-
-
-            <div class="blog-list">
-                <h2 class="section-title">Posts recientes:</h2>
-
-
-                <div class="card-columns">
-                    <div class="card">
-                        <img class="card-img-top" :src="posts[0].img.src" :alt="posts[0].img.alt">
-                        <div class="card-body">
-                            <h5 class="card-title">{{posts[0].title}}</h5>
-                            <p class="card-text">{{posts[0].desc}}</p>
-                            <p class="card-text"><small class="text-muted">Publicado el {{posts[0].date}}</small></p>
-                            <p class="card-button"><a class="read-on-medium" target="_blank" href="https://medium.com/@james.cortes.t/logo-a23760b5d949">Leer en medium</a></p>
+                    <div class="terminal-body" id="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command typing-animation">echo "hello world"</span>
+                        </div>
+                        <div class="terminal-output fade-in-output">hello world</div>
+                        <div class="terminal-line input-line">
+                            <span class="prompt">$</span>
+                            <input type="text" id="terminal-input" class="terminal-input" autofocus autocomplete="off" spellcheck="false">
                         </div>
                     </div>
-                    <div class="card p-3">
-                        <blockquote class="blockquote mb-0 card-body">
-                            <p>"La tecnología está al servicio de los usuarios, no para satisfacer nuestros egos."</p>
-                            <footer class="blockquote-footer">
-                                <small class="text-muted">
-                                    <cite title="Source Title">Cap 02 Technologist Life</cite>
-                                </small>
-                            </footer>
-                        </blockquote>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="assets/img/blog/mockup.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Chat GPT desbloqueando</h5>
-                            <p class="card-text">Hace un tiempo que tenía ganas de cambiar mi sitio, como ando con poco
-                                tiempo, le pedí ayuda a Chat GPT y me recomendó este diseño. Me dedicaré estos días a
-                                implementarlo a ver que tal me queda.</p>
-                            <p class="card-text"><small class="text-muted">Publicado el 2024-05-22</small></p>
-                            <p class="card-button"><a class="read-on-medium" target="_blank" href="https://medium.com/@james.cortes.t/chat-gpt-desbloqueando-c6deb41fd833">Leer en medium</a></p>
-                        </div>
-                    </div>
-
-                    <!-- 
-                        <div class="card bg-primary text-white text-center p-3">
-                      <blockquote class="blockquote mb-0">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-                        <footer class="blockquote-footer">
-                          <small>
-                            Someone famous in <cite title="Source Title">Source Title</cite>
-                          </small>
-                        </footer>
-                      </blockquote>
-                    </div> -->
-        
-
-                    <!-- 
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                      </div>
-                    </div> -->
                 </div>
-            
-
+                
+                <div class="social-links">
+                    <a href="https://cl.linkedin.com/in/jameees" target="_blank" title="LinkedIn">
+                        <img src="assets/img/logo-linkedin.png" class="rrss-logo">
+                    </a>
+                    <a href="https://github.com/jamees" target="_blank" title="GitHub">
+                        <img src="assets/img/logo-github.png" class="rrss-logo">
+                    </a>
+                    <a href="mailto:mail@james.cl" title="Email">
+                        <img src="assets/img/logo-email.png" class="rrss-logo">
+                    </a>
+                </div>
             </div>
         </section>
-        <div id="footer"> </div>
 
     </main>
 
@@ -147,6 +91,81 @@
     <!--JS Functions -->
     <script src="assets/js/app.js"></script>
     <script src="assets/js/main.js?t=1"></script>
+    
+    <script>
+        // Terminal interactivo
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalBody = document.getElementById('terminal-body');
+        
+        // Enfocar el input cuando se hace clic en el terminal
+        terminalBody.addEventListener('click', function() {
+            terminalInput.focus();
+        });
+        
+        // Manejar el enter
+        terminalInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const command = terminalInput.value.trim().toLowerCase();
+                
+                // Crear línea con el comando ingresado
+                const inputLine = document.querySelector('.input-line');
+                const commandLine = document.createElement('div');
+                commandLine.className = 'terminal-line';
+                commandLine.innerHTML = `<span class="prompt">$</span><span class="command">${terminalInput.value}</span>`;
+                
+                // Insertar antes de la línea de input
+                terminalBody.insertBefore(commandLine, inputLine);
+                
+                // Procesar comando
+                if (command === 'pascuala') {
+                    const output = document.createElement('div');
+                    output.className = 'terminal-output';
+                    output.textContent = 'Redirigiendo al horario de Pascuala...';
+                    terminalBody.insertBefore(output, inputLine);
+                    
+                    // Redirigir después de un breve delay
+                    setTimeout(() => {
+                        window.location.href = 'horario.html';
+                    }, 800);
+                } else if (command === 'blog') {
+                    const output = document.createElement('div');
+                    output.className = 'terminal-output';
+                    output.textContent = 'Abriendo blog...';
+                    terminalBody.insertBefore(output, inputLine);
+                    
+                    // Redirigir después de un breve delay
+                    setTimeout(() => {
+                        window.location.href = 'blog.html';
+                    }, 800);
+                } else if (command === 'help') {
+                    const output = document.createElement('div');
+                    output.className = 'terminal-output';
+                    output.innerHTML = 'Comandos disponibles:<br>- pascuala: Ver horario escolar<br>- blog: Ver posts del blog<br>- help: Mostrar esta ayuda<br>- clear: Limpiar terminal';
+                    terminalBody.insertBefore(output, inputLine);
+                } else if (command === 'clear') {
+                    // Limpiar todo excepto la línea de input
+                    const lines = terminalBody.querySelectorAll('.terminal-line:not(.input-line), .terminal-output');
+                    lines.forEach(line => line.remove());
+                } else if (command !== '') {
+                    const output = document.createElement('div');
+                    output.className = 'terminal-output terminal-error';
+                    output.textContent = `comando no encontrado: ${command}. Escribe 'help' para ver comandos disponibles.`;
+                    terminalBody.insertBefore(output, inputLine);
+                }
+                
+                // Limpiar input
+                terminalInput.value = '';
+                
+                // Scroll al final
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
+        });
+        
+        // Mantener el foco en el input
+        terminalInput.addEventListener('blur', function() {
+            setTimeout(() => terminalInput.focus(), 0);
+        });
+    </script>
 
 </body>
 

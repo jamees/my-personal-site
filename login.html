@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - James.cl</title>
+
+    <!--CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Giga&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="assets/css/style.css?v=12334" rel="stylesheet" type="text/css">
+
+    <style>
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            padding: 40px 20px;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .login-title {
+            font-family: 'Lexend Giga', sans-serif;
+            color: #04416e;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            color: #85DDD0;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 0.9em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            color: #04416e;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-control {
+            border: 2px solid #85DDD0;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #04416e;
+            box-shadow: 0 0 0 0.2rem rgba(133, 221, 208, 0.25);
+            outline: none;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #04416e 0%, #093b5d 100%);
+            color: #fefefe;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(135deg, #093b5d 0%, #04416e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(4, 65, 110, 0.4);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #04416e;
+            font-size: 0.9em;
+        }
+
+        .login-footer a {
+            color: #85DDD0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .supertokens-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #85DDD0;
+            text-align: center;
+            color: #04416e;
+        }
+
+        @media (max-width: 768px) {
+            .login-box {
+                padding: 40px 30px;
+            }
+
+            .login-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115455553-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-115455553-1');
+    </script>
+
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="logo"><a href="index.html"><img src="logo_white.png" class="logo-icon" /></a></div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-section nav-list">
+            <li class="link login-btn"><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <main id="app">
+        <section id="login">
+            <div class="login-container">
+                <div class="login-box">
+                    <h1 class="login-title">Bienvenido</h1>
+                    <p class="login-subtitle">Inicia sesión para continuar</p>
+
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="tu@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                        </div>
+
+                        <button type="submit" class="btn-login">Iniciar Sesión</button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>¿No tienes cuenta? <a href="#">Regístrate</a></p>
+                        <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+                    </div>
+
+                    <!-- <div class="supertokens-container">
+                        <p><strong>🔧 Zona de integración SuperTokens</strong></p>
+                        <p style="font-size: 0.85em; margin-top: 10px;">
+                            Este espacio está preparado para integrar SuperTokens.<br>
+                            Configura tu autenticación aquí.
+                        </p>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--JS Functions -->
+    <script>
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-list').classList.toggle('active');
+        });
+
+        // Placeholder para el formulario de login
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Formulario de login listo para integrar con SuperTokens');
+        });
+    </script>
+
+</body>
+
+</html>
