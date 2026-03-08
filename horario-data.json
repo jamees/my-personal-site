@@ -1,0 +1,166 @@
+{
+  "titulo": "HORARIO",
+  "subtitulo": "Pascuala - Primero Básico A",
+  "horarios": [
+    {
+      "hora": "08:10",
+      "lunes": { "materia": "Matemáticas", "clase": "matematicas" },
+      "martes": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
+      "miercoles": { "materia": "Matemática", "clase": "matematicas" },
+      "jueves": { "materia": "Música", "clase": "musica" },
+      "viernes": { "materia": "Ed. Física", "clase": "ed-fisica" }
+    },
+    {
+      "hora": "08:45",
+      "lunes": { "materia": "Orientación", "clase": "orientacion" },
+      "martes": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
+      "miercoles": { "materia": "Matemática", "clase": "matematicas" },
+      "jueves": { "materia": "Música", "clase": "musica" },
+      "viernes": { "materia": "Ed. Física", "clase": "ed-fisica" }
+    },
+    {
+      "hora": "09:30",
+      "lunes": { "materia": "Ciencias Sociales", "clase": "ciencias-sociales" },
+      "martes": { "materia": "Artes Visuales", "clase": "artes-visuales" },
+      "miercoles": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
+      "jueves": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
+      "viernes": { "materia": "Matemáticas", "clase": "matematicas" }
+    },
+    {
+      "hora": "10:15",
+      "lunes": { "materia": "Ciencias Sociales", "clase": "ciencias-sociales" },
+      "martes": { "materia": "Artes Visuales", "clase": "artes-visuales" },
+      "miercoles": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
+      "jueves": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
+      "viernes": { "materia": "Matemáticas", "clase": "matematicas" }
+    },
+    {
+      "hora": "11:15",
+      "lunes": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
+      "martes": { "materia": "Ciencias Sociales", "clase": "ciencias-sociales" },
+      "miercoles": { "materia": "Ed. Física", "clase": "ed-fisica" },
+      "jueves": { "materia": "Matemáticas", "clase": "matematicas" },
+      "viernes": { "materia": "Tecnología", "clase": "tecnologia" }
+    },
+    {
+      "hora": "12:00",
+      "lunes": { "materia": "Lenguaje y Comunicación", "clase": "lenguaje" },
+      "martes": { "materia": "Crem", "clase": "crem" },
+      "miercoles": { "materia": "Ed. Física", "clase": "ed-fisica" },
+      "jueves": { "materia": "Matemáticas", "clase": "matematicas" },
+      "viernes": { "materia": "Tecnología", "clase": "tecnologia" }
+    },
+    {
+      "hora": "13:00",
+      "lunes": { "materia": "Inglés", "clase": "ingles" },
+      "martes": { "materia": "Inglés", "clase": "ingles" },
+      "miercoles": { "materia": "Crem", "clase": "crem" },
+      "jueves": { "materia": "Ciencias Naturales", "clase": "ciencias-naturales" },
+      "viernes": { "materia": "Inglés", "clase": "ingles" }
+    },
+    {
+      "hora": "13:45",
+      "lunes": { "materia": "Ciencias Naturales", "clase": "ciencias-naturales" },
+      "martes": { "materia": "Inglés", "clase": "ingles" },
+      "miercoles": { "materia": "Crem", "clase": "crem" },
+      "jueves": { "materia": "Ciencias Naturales", "clase": "ciencias-naturales" },
+      "viernes": { "materia": "Inglés", "clase": "ingles" }
+    },
+    {
+      "hora": "15:15",
+      "lunes": { "materia": "Gimnasia Artística", "clase": "gimnasia-artisticos" },
+      "martes": { "materia": "", "clase": "", "style": "background-color: #f2f2f2;" },
+      "miercoles": { "materia": "Arte y Manualidades", "clase": "arte-manualidades" },
+      "jueves": { "materia": "", "clase": "", "style": "background-color: #f2f2f2;" },
+      "viernes": { "materia": "", "clase": "", "style": "background-color: #f2f2f2;" }
+    },
+    {
+      "hora": "16:00",
+      "lunes": { "materia": "", "clase": "", "style": "background-color: #f2f2f2;" },
+      "martes": { "materia": "", "clase": "", "style": "background-color: #f2f2f2;" },
+      "miercoles": { "materia": "", "clase": "", "style": "background-color: #f2f2f2;" },
+      "jueves": { "materia": "", "clase": "", "style": "background-color: #f2f2f2;" },
+      "viernes": { "materia": "", "clase": "", "style": "background-color: #f2f2f2;" }
+    }
+  ],
+  "materias": [
+    { 
+      "nombre": "Matemáticas", 
+      "clase": "matematicas",
+      "color": "#4a90e2",
+      "textColor": "#fefefe"
+    },
+    { 
+      "nombre": "Lenguaje y Comunicación", 
+      "clase": "lenguaje",
+      "color": "#e74c3c",
+      "textColor": "#fefefe"
+    },
+    { 
+      "nombre": "Ciencias Sociales", 
+      "clase": "ciencias-sociales",
+      "color": "#f8f840",
+      "textColor": "#024373"
+    },
+    { 
+      "nombre": "Artes Visuales", 
+      "clase": "artes-visuales",
+      "color": "#ff9800",
+      "textColor": "#fefefe"
+    },
+    { 
+      "nombre": "Música", 
+      "clase": "musica",
+      "color": "#a6a6a6",
+      "textColor": "#fefefe"
+    },
+    { 
+      "nombre": "Educación Física", 
+      "clase": "ed-fisica",
+      "color": "#ffddee",
+      "textColor": "#024373"
+    },
+    { 
+      "nombre": "Orientación", 
+      "clase": "orientacion",
+      "color": "#a8d5ba",
+      "textColor": "#024373"
+    },
+    { 
+      "nombre": "Inglés", 
+      "clase": "ingles",
+      "color": "#cd71de",
+      "textColor": "#fefefe"
+    },
+    { 
+      "nombre": "Ciencias Naturales", 
+      "clase": "ciencias-naturales",
+      "color": "#3cc74a",
+      "textColor": "#fefefe"
+    },
+    { 
+      "nombre": "Tecnología", 
+      "clase": "tecnologia",
+      "color": "#85DDD0",
+      "textColor": "#024373"
+    },
+    { 
+      "nombre": "Crem", 
+      "clase": "crem",
+      "color": "#87ceeb",
+      "textColor": "#024373"
+    },
+    { 
+      "nombre": "Gimnasia Artística", 
+      "clase": "gimnasia-artisticos",
+      "color": "#ffd3c8",
+      "textColor": "#024373"
+    },
+    { 
+      "nombre": "Arte y Manualidades", 
+      "clase": "arte-manualidades",
+      "color": "#cfeae5",
+      "textColor": "#024373"
+    }
+  ]
+}

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario - James.cl</title>
+
+    <!--CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Giga&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="assets/css/style.css?v=12334" rel="stylesheet" type="text/css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        #app {
+            background: linear-gradient(135deg, 
+                #a8e6cf 0%, 
+                #dcedc1 25%, 
+                #ffd3b6 50%, 
+                #ffaaa5 75%, 
+                #ff8b94 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        #app::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(168, 230, 207, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 170, 165, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 211, 182, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        .schedule-container {
+            background-color: transparent;
+            border-radius: 30px;
+            padding: 60px 50px 30px 50px;
+            max-width: 1400px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .schedule-content {
+            background-color: #fefefe;
+            border-radius: 50% 40% 60% 45% / 40% 50% 45% 55%;
+            padding: 40px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                0 20px 60px rgba(0, 0, 0, 0.05),
+                inset 0 -5px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .pokemon-decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .pokemon {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* Pokémon lado izquierdo */
+        .pokemon-left-1 {
+            top: 150px;
+            left: -120px;
+        }
+
+        .pokemon-left-2 {
+            top: 310px;
+            left: -120px;
+        }
+
+        .pokemon-left-3 {
+            top: 470px;
+            left: -120px;
+        }
+
+        .pokemon-left-4 {
+            top: 630px;
+            left: -120px;
+        }
+
+        /* Pokémon lado derecho */
+        .pokemon-right-1 {
+            top: 150px;
+            right: -120px;
+        }
+
+        .pokemon-right-2 {
+            top: 310px;
+            right: -120px;
+        }
+
+        .pokemon-right-3 {
+            top: 470px;
+            right: -120px;
+        }
+
+        .pokemon-right-4 {
+            top: 630px;
+            right: -120px;
+        }
+
+        /* Pokémon junto al título */
+        .pokemon-title {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+
+        .pokemon-title-left,
+        .pokemon-title-right {
+            width: 140px;
+            height: 140px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .schedule-title {
+            color: #04416e;
+            font-family: 'Lexend Giga', sans-serif;
+            font-size: 2.5em;
+            margin: 0;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, 
+                #ff69b4, #ff8c94, #ffa07a, #98d8c8, 
+                #b19cd9, #ff69b4, #ff8c94);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-subtitle {
+            color: #04416e;
+            font-family: 'Lexend Giga', sans-serif;
+            font-size: 1em;
+            margin: 10px 0 0 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #024373;
+            position: relative;
+            z-index: 10;
+            table-layout: fixed;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .schedule-table th {
+            background-color: #ffc0e0;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid #fff;
+            font-size: 1.1em;
+            width: 16.66%;
+        }
+
+        .schedule-table th:first-child {
+            width: 10%;
+            border-top-left-radius: 20px;
+        }
+
+        .schedule-table th:last-child {
+            border-top-right-radius: 20px;
+        }
+
+        .schedule-table tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 20px;
+        }
+
+        .schedule-table tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 20px;
+        }
+
+        .schedule-table td {
+            padding: 15px;
+            text-align: center;
+            border: 2px solid #fff;
+            font-weight: bold;
+            min-height: 50px;
+        }
+
+        .time-cell {
+            background-color: #ffc0e0;
+            font-weight: bold;
+            color: #024373;
+        }
+
+        .subject-cell {
+            color: #024373;
+            font-size: 0.95em;
+        }
+
+        /* Colores de materias */
+        .matematicas {
+            background-color: #4a90e2;
+            color: #fefefe;
+        }
+
+        .lenguaje {
+            background-color: #e74c3c;
+            color: #fefefe;
+        }
+
+        .ciencias-sociales {
+            background-color: #f1c40f;
+            color: #024373;
+        }
+
+        .artes-visuales {
+            background-color: #ff9800;
+            color: #fefefe;
+        }
+
+        .musica {
+            background-color: #9b59b6;
+            color: #fefefe;
+        }
+
+        .ed-fisica {
+            background-color: #85DDD0;
+            color: #024373;
+        }
+
+        .orientacion {
+            background-color: #a8d5ba;
+            color: #024373;
+        }
+
+        .ingles {
+            background-color: #c39bd3;
+            color: #fefefe;
+        }
+
+        .ciencias-naturales {
+            background-color: #52c41a;
+            color: #fefefe;
+        }
+
+        .tecnologia {
+            background-color: #85DDD0;
+            color: #024373;
+        }
+
+        .crem {
+            background-color: #87ceeb;
+            color: #024373;
+        }
+
+        .gimnasia-artisticos {
+            background-color: #f4a460;
+            color: #024373;
+        }
+
+        .arte-manualidades {
+            background-color: #dda0dd;
+            color: #024373;
+        }
+
+        .legend-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .legend-container.hidden {
+            display: none;
+        }
+
+        .legend-title {
+            color: #04416e;
+            font-weight: bold;
+            font-size: 1em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .legend-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .legend-item:active {
+            transform: translateY(0);
+        }
+
+        .legend-item.active {
+            border-color: #04416e;
+            background-color: #f0f8ff;
+        }
+
+        .legend-book {
+            width: 70px;
+            height: 90px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .legend-item:hover .legend-book {
+            transform: rotateY(-10deg);
+        }
+
+        .legend-book-cover {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px 8px 8px 4px;
+            box-shadow: 
+                3px 3px 8px rgba(0, 0, 0, 0.3),
+                inset -2px 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            position: relative;
+            border-left: 4px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .legend-book-cover::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        .legend-book-spine {
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.4), transparent);
+        }
+
+        .legend-book-title {
+            font-size: 0.6em;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            word-wrap: break-word;
+            z-index: 1;
+        }
+
+        .legend-color {
+            display: none;
+        }
+
+        .export-button {
+            margin-top: 20px;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .export-button button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .export-button button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .export-button button:active {
+            transform: translateY(0) scale(1);
+        }
+
+        .toggle-legend-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .toggle-legend-btn:hover {
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+            }
+
+            main {
+                padding-top: 80px;
+            }
+
+            section {
+                padding: 20px 10px;
+                min-height: auto;
+            }
+
+            .pokemon {
+                display: none;
+            }
+
+            .schedule-container {
+                padding: 30px 15px;
+                border-radius: 30px;
+                max-width: 100%;
+            }
+
+            .schedule-content {
+                border-radius: 30px;
+                padding: 30px 15px;
+            }
+
+            .pokemon-title {
+                flex-direction: row;
+                gap: 15px;
+                margin-bottom: 15px;
+            }
+
+            .pokemon-title-left,
+            .pokemon-title-right {
+                width: 60px;
+                height: 60px;
+            }
+
+            .schedule-title {
+                font-size: 1.5em;
+                letter-spacing: 3px;
+            }
+
+            .schedule-subtitle {
+                font-size: 0.75em;
+            }
+
+            .schedule-table {
+                display: none !important;
+            }
+
+            .mobile-schedule {
+                display: block !important;
+            }
+
+            .day-card {
+                background: #fff;
+                border-radius: 15px;
+                padding: 15px;
+                margin-bottom: 15px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            .day-header {
+                font-size: 1.3em;
+                font-weight: bold;
+                color: #04416e;
+                margin-bottom: 12px;
+                padding-bottom: 8px;
+                border-bottom: 3px solid #ffc0e0;
+                text-align: center;
+            }
+
+            .time-slot {
+                display: flex;
+                align-items: center;
+                padding: 8px;
+                margin-bottom: 6px;
+                border-radius: 8px;
+                font-size: 0.85em;
+            }
+
+            .time-slot-time {
+                font-weight: bold;
+                color: #04416e;
+                min-width: 50px;
+                margin-right: 10px;
+                font-size: 0.9em;
+            }
+
+            .time-slot-subject {
+                flex: 1;
+                padding: 8px 12px;
+                border-radius: 6px;
+                font-weight: 500;
+            }
+
+            .legend-container {
+                margin-top: 15px;
+                padding: 15px 10px;
+            }
+
+            .legend-title {
+                font-size: 0.9em;
+                margin-bottom: 10px;
+            }
+
+            .legend-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .legend-item {
+                padding: 8px 4px;
+            }
+
+            .legend-book {
+                width: 60px;
+                height: 75px;
+            }
+
+            .legend-book-title {
+                font-size: 0.55em;
+            }
+
+            .export-button {
+                gap: 8px;
+            }
+
+            .export-button button {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3em;
+            }
+        }
+
+        .mobile-schedule {
+            display: none;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media print {
+            .export-button {
+                display: none !important;
+            }
+
+            .schedule-container {
+                page-break-inside: avoid;
+            }
+
+            .schedule-content {
+                page-break-inside: avoid;
+            }
+
+            .schedule-table {
+                page-break-inside: avoid;
+            }
+
+            .schedule-table tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            .legend-container {
+                page-break-before: auto;
+                page-break-inside: avoid;
+            }
+
+            .mobile-schedule {
+                display: none !important;
+            }
+
+            section {
+                min-height: auto;
+            }
+
+            #app {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+
+    <!--JS Libraries -->
+    <script src="https://code.createjs.com/easeljs-0.7.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115455553-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-115455553-1');
+    </script>
+
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="logo"><img src="logo_white.png" class="logo-icon" /></div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-section nav-list">
+            <li class="link" data-block="schedule">Horario</li>
+            <li class="link" data-block="about">Info</li>
+            <li class="link" data-block="blog">Blog</li>
+            <li class="link login-btn" data-block="contact">Login</li>
+        </ul>
+    </nav>
+
+    <main id="app">
+        <section id="schedule">
+            <div class="schedule-container">
+                <!-- Decoraciones de Pokémon -->
+                <div class="pokemon-decorations">
+                    <!-- Pokémon lado izquierdo -->
+                    <div class="pokemon pokemon-left-1" style="background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png');"></div>
+                    <div class="pokemon pokemon-left-2" style="background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/196.png');"></div>
+                    <div class="pokemon pokemon-left-3" style="background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/471.png');"></div>
+                    <div class="pokemon pokemon-left-4" style="background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png');"></div>
+                    
+                    <!-- Pokémon lado derecho -->
+                    <div class="pokemon pokemon-right-1" style="background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png');"></div>
+                    <div class="pokemon pokemon-right-2" style="background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/136.png');"></div>
+                    <div class="pokemon pokemon-right-3" style="background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/197.png');"></div>
+                    <div class="pokemon pokemon-right-4" style="background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png');"></div>
+                </div>
+
+                <div class="schedule-content">
+                    <div class="pokemon-title">
+                        <div class="pokemon-title-left" style="background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png');"></div>
+                        <div style="text-align: center;">
+                            <h1 class="schedule-title" id="titulo-horario">HORARIO</h1>
+                            <p class="schedule-subtitle" id="subtitulo-horario">Pascuala - Primero Básico A</p>
+                        </div>
+                        <div class="pokemon-title-right" style="background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/700.png');"></div>
+                    </div>
+                    
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Hora</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="horario-tbody">
+                            <!-- Se cargará dinámicamente desde JSON -->
+                        </tbody>
+                    </table>
+
+                    <div class="mobile-schedule" id="mobile-schedule">
+                        <!-- Se cargará dinámicamente desde JSON para móvil -->
+                    </div>
+                </div>
+
+                <div class="export-button">
+                    <button onclick="toggleLegend()" class="toggle-legend-btn" id="toggle-legend-btn" title="Mostrar/Ocultar Leyenda">📚</button>
+                    <button onclick="exportToPDF()" title="Exportar a PDF">📄</button>
+                </div>
+
+                <div class="legend-container hidden">
+                    <div class="legend-title">Materias</div>
+                    <div class="legend-grid" id="legend-grid">
+                        <!-- Se cargará dinámicamente desde JSON -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!--JS Functions -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/main.js?t=1"></script>
+    
+    <script>
+        // Cargar datos del horario desde JSON
+        async function cargarHorario() {
+            try {
+                const response = await fetch('horario-data.json');
+                const data = await response.json();
+                
+                // Crear estilos dinámicos para las materias
+                let styleElement = document.getElementById('dynamic-styles');
+                if (!styleElement) {
+                    styleElement = document.createElement('style');
+                    styleElement.id = 'dynamic-styles';
+                    document.head.appendChild(styleElement);
+                }
+                
+                let cssRules = '';
+                data.materias.forEach(materia => {
+                    cssRules += `
+                        .${materia.clase} {
+                            background-color: ${materia.color};
+                            color: ${materia.textColor};
+                        }
+                    `;
+                });
+                styleElement.textContent = cssRules;
+                
+                // Actualizar título
+                document.getElementById('titulo-horario').textContent = data.titulo;
+                
+                // Actualizar subtítulo
+                if (data.subtitulo) {
+                    document.getElementById('subtitulo-horario').textContent = data.subtitulo;
+                }
+                
+                // Generar filas del horario
+                const tbody = document.getElementById('horario-tbody');
+                tbody.innerHTML = '';
+                
+                data.horarios.forEach(horario => {
+                    const tr = document.createElement('tr');
+                    
+                    // Celda de hora
+                    const tdHora = document.createElement('td');
+                    tdHora.className = 'time-cell';
+                    tdHora.textContent = horario.hora;
+                    tr.appendChild(tdHora);
+                    
+                    // Celdas de días
+                    const dias = [
+                        { key: 'lunes', label: 'Lunes' },
+                        { key: 'martes', label: 'Martes' },
+                        { key: 'miercoles', label: 'Miércoles' },
+                        { key: 'jueves', label: 'Jueves' },
+                        { key: 'viernes', label: 'Viernes' }
+                    ];
+                    
+                    dias.forEach(dia => {
+                        const td = document.createElement('td');
+                        const diaData = horario[dia.key];
+                        
+                        // Agregar data-label para móvil
+                        td.setAttribute('data-label', dia.label);
+                        
+                        if (diaData.clase) {
+                            td.className = `subject-cell ${diaData.clase}`;
+                        } else {
+                            td.className = 'subject-cell';
+                        }
+                        
+                        if (diaData.style) {
+                            td.setAttribute('style', diaData.style);
+                        }
+                        
+                        td.textContent = diaData.materia;
+                        tr.appendChild(td);
+                    });
+                    
+                    tbody.appendChild(tr);
+                });
+                
+                // Generar vista móvil agrupada por día
+                const mobileSchedule = document.getElementById('mobile-schedule');
+                mobileSchedule.innerHTML = '';
+                
+                const dias = [
+                    { key: 'lunes', label: 'Lunes' },
+                    { key: 'martes', label: 'Martes' },
+                    { key: 'miercoles', label: 'Miércoles' },
+                    { key: 'jueves', label: 'Jueves' },
+                    { key: 'viernes', label: 'Viernes' }
+                ];
+                
+                dias.forEach(dia => {
+                    const dayCard = document.createElement('div');
+                    dayCard.className = 'day-card';
+                    
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'day-header';
+                    dayHeader.textContent = dia.label;
+                    dayCard.appendChild(dayHeader);
+                    
+                    data.horarios.forEach(horario => {
+                        const diaData = horario[dia.key];
+                        
+                        if (diaData.materia) {
+                            const timeSlot = document.createElement('div');
+                            timeSlot.className = 'time-slot';
+                            
+                            const timeDiv = document.createElement('div');
+                            timeDiv.className = 'time-slot-time';
+                            timeDiv.textContent = horario.hora;
+                            
+                            const subjectDiv = document.createElement('div');
+                            subjectDiv.className = 'time-slot-subject';
+                            if (diaData.clase) {
+                                subjectDiv.classList.add(diaData.clase);
+                            }
+                            if (diaData.style) {
+                                subjectDiv.setAttribute('style', diaData.style);
+                            }
+                            subjectDiv.textContent = diaData.materia;
+                            
+                            timeSlot.appendChild(timeDiv);
+                            timeSlot.appendChild(subjectDiv);
+                            dayCard.appendChild(timeSlot);
+                        }
+                    });
+                    
+                    mobileSchedule.appendChild(dayCard);
+                });
+                
+                // Generar leyenda
+                const legendGrid = document.getElementById('legend-grid');
+                legendGrid.innerHTML = '';
+                
+                data.materias.forEach(materia => {
+                    const div = document.createElement('div');
+                    div.className = 'legend-item';
+                    
+                    // Crear libro
+                    const bookDiv = document.createElement('div');
+                    bookDiv.className = 'legend-book';
+                    
+                    const bookCover = document.createElement('div');
+                    bookCover.className = `legend-book-cover ${materia.clase}`;
+                    
+                    const bookTitle = document.createElement('div');
+                    bookTitle.className = 'legend-book-title';
+                    bookTitle.textContent = materia.nombre;
+                    bookTitle.style.color = materia.textColor;
+                    
+                    bookCover.appendChild(bookTitle);
+                    bookDiv.appendChild(bookCover);
+                    
+                    // Mantener el color oculto para compatibilidad con el código de resaltado
+                    const colorDiv = document.createElement('div');
+                    colorDiv.className = `legend-color ${materia.clase}`;
+                    colorDiv.style.display = 'none';
+                    
+                    div.appendChild(bookDiv);
+                    div.appendChild(colorDiv);
+                    legendGrid.appendChild(div);
+                });
+                
+                // Inicializar eventos de la leyenda
+                inicializarLeyenda();
+                
+            } catch (error) {
+                console.error('Error al cargar el horario:', error);
+            }
+        }
+        
+        function inicializarLeyenda() {
+            const legendItems = document.querySelectorAll('.legend-item');
+            let activeSubject = null;
+            
+            legendItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const subjectClass = this.querySelector('.legend-color').className.split(' ')[1];
+                    
+                    if (activeSubject === subjectClass) {
+                        document.querySelectorAll('.subject-cell').forEach(cell => {
+                            cell.style.opacity = '1';
+                            cell.style.transform = 'scale(1)';
+                            cell.style.boxShadow = 'none';
+                        });
+                        
+                        legendItems.forEach(btn => btn.classList.remove('active'));
+                        activeSubject = null;
+                    } else {
+                        activeSubject = subjectClass;
+                        
+                        legendItems.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        document.querySelectorAll('.subject-cell').forEach(cell => {
+                            if (cell.classList.contains(subjectClass)) {
+                                cell.style.opacity = '1';
+                                cell.style.transform = 'scale(1.05)';
+                                cell.style.boxShadow = '0 0 15px rgba(4, 65, 110, 0.5)';
+                                cell.style.transition = 'all 0.3s ease';
+                            } else {
+                                cell.style.opacity = '0.3';
+                                cell.style.transform = 'scale(1)';
+                                cell.style.boxShadow = 'none';
+                                cell.style.transition = 'all 0.3s ease';
+                            }
+                        });
+                    }
+                });
+            });
+        }
+        
+        function toggleLegend() {
+            const legendContainer = document.querySelector('.legend-container');
+            legendContainer.classList.toggle('hidden');
+        }
+        
+        function exportToPDF() {
+            // Ocultar temporalmente los botones de exportar
+            const element = document.body;
+
+            const exportButton = document.querySelector('.export-button');
+            const originalExportDisplay = exportButton.style.display;
+            exportButton.style.display = 'none';
+            
+            // Obtener toda la sección del horario
+            const section = document.querySelector('#app');
+            
+            // Configuración del PDF optimizada para capturar toda la página
+            const opt = {
+                margin: 1,
+                filename: 'horario-escolar.pdf',
+                image: { 
+                    type: 'jpeg', 
+                    quality: 0.98 
+                },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    logging: false,
+                    letterRendering: true,
+                    allowTaint: true,
+                    scrollY: -window.scrollY,
+                    scrollX: 0
+                },
+                jsPDF: { 
+                    unit: 'px', 
+                    format: [element.scrollWidth, element.scrollHeight], // Crea un PDF del tamaño exacto del contenido
+                    orientation: 'landscape',
+                    compress: true 
+                },
+                pagebreak: { 
+                    mode: ['avoid-all', 'css', 'legacy'],
+                    before: '.nav'
+                }
+            };
+            
+            // Generar PDF
+            html2pdf().set(opt).from(section).save().then(() => {
+                // Restaurar botones después de generar el PDF
+                exportButton.style.display = originalExportDisplay;
+            }).catch((error) => {
+                console.error('Error al generar PDF:', error);
+                exportButton.style.display = originalExportDisplay;
+            });
+        }
+        
+        // Cargar el horario al cargar la página
+        document.addEventListener('DOMContentLoaded', cargarHorario);
+    </script>
+
+</body>
+
+</html>
