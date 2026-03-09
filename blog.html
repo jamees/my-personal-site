@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <link href="assets/css/style.css?v=20260308" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css?v=20260308c" rel="stylesheet" type="text/css">
 
     <!--JS Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
@@ -43,51 +43,213 @@
 
     <main id="app">
         <section id="blog" class="blog">
-            <div class="blog-list">
-                <h2 class="section-title">Posts recientes:</h2>
+            <div class="blog-container">
+                <h1 class="blog-main-title">Blog</h1>
+                <p class="blog-subtitle">Explorando arquitectura empresarial, ingeniería de software y plataformas de datos</p>
 
-                <div class="card-columns">
-                    <div class="card">
-                        <img class="card-img-top" :src="posts[0].img.src" :alt="posts[0].img.alt">
-                        <div class="card-body">
-                            <h5 class="card-title">{{posts[0].title}}</h5>
-                            <p class="card-text">{{posts[0].desc}}</p>
-                            <p class="card-text"><small class="text-muted">Publicado el {{posts[0].date}}</small></p>
-                            <p class="card-button"><a class="read-on-medium" target="_blank" href="https://medium.com/@james.cortes.t/logo-a23760b5d949">Leer en medium</a></p>
+                <!-- Filtros de categorías -->
+                <div class="category-filters">
+                    <button class="category-btn active" data-category="all">Todos</button>
+                    <button class="category-btn" data-category="enterprise-architecture">Enterprise Architecture</button>
+                    <button class="category-btn" data-category="software-engineering">Software Engineering</button>
+                    <button class="category-btn" data-category="data-platform">Data Platform</button>
+                    <button class="category-btn" data-category="personal">Personal</button>
+                </div>
+
+                <!-- Grid de posts -->
+                <div class="blog-grid">
+                    <!-- Enterprise Architecture Posts -->
+                    <article class="blog-card" data-category="enterprise-architecture">
+                        <div class="blog-card-header enterprise-architecture">
+                            <span class="category-badge">Enterprise Architecture</span>
                         </div>
-                    </div>
-                    <div class="card p-3">
-                        <blockquote class="blockquote mb-0 card-body">
-                            <p>"La tecnología está al servicio de los usuarios, no para satisfacer nuestros egos."</p>
-                            <footer class="blockquote-footer">
-                                <small class="text-muted">
-                                    <cite title="Source Title">Cap 02 Technologist Life</cite>
-                                </small>
-                            </footer>
-                        </blockquote>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="assets/img/blog/mockup.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Chat GPT desbloqueando</h5>
-                            <p class="card-text">Hace un tiempo que tenía ganas de cambiar mi sitio, como ando con poco
-                                tiempo, le pedí ayuda a Chat GPT y me recomendó este diseño. Me dedicaré estos días a
-                                implementarlo a ver que tal me queda.</p>
-                            <p class="card-text"><small class="text-muted">Publicado el 2024-05-22</small></p>
-                            <p class="card-button"><a class="read-on-medium" target="_blank" href="https://medium.com/@james.cortes.t/chat-gpt-desbloqueando-c6deb41fd833">Leer en medium</a></p>
+                        <div class="blog-card-body">
+                            <h3 class="blog-card-title">Patrones de Arquitectura Empresarial</h3>
+                            <p class="blog-card-excerpt">Explorando patrones arquitectónicos escalables para organizaciones modernas: microservicios, event-driven architecture y más.</p>
+                            <div class="blog-card-meta">
+                                <span class="blog-date">📅 2024-06-15</span>
+                                <span class="blog-read-time">⏱️ 8 min</span>
+                            </div>
                         </div>
-                    </div>
+                        <div class="blog-card-footer">
+                            <a href="#" class="blog-read-more">Leer más →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="enterprise-architecture">
+                        <div class="blog-card-header enterprise-architecture">
+                            <span class="category-badge">Enterprise Architecture</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3 class="blog-card-title">Domain-Driven Design en la Práctica</h3>
+                            <p class="blog-card-excerpt">Cómo implementar DDD para crear sistemas complejos mantenibles y alineados con el negocio.</p>
+                            <div class="blog-card-meta">
+                                <span class="blog-date">📅 2024-06-10</span>
+                                <span class="blog-read-time">⏱️ 12 min</span>
+                            </div>
+                        </div>
+                        <div class="blog-card-footer">
+                            <a href="#" class="blog-read-more">Leer más →</a>
+                        </div>
+                    </article>
+
+                    <!-- Software Engineering Posts -->
+                    <article class="blog-card" data-category="software-engineering">
+                        <div class="blog-card-header software-engineering">
+                            <span class="category-badge">Software Engineering</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3 class="blog-card-title">Clean Code: Más Allá de los Principios</h3>
+                            <p class="blog-card-excerpt">Técnicas avanzadas para escribir código mantenible, testeable y que realmente resuelva problemas.</p>
+                            <div class="blog-card-meta">
+                                <span class="blog-date">📅 2024-06-08</span>
+                                <span class="blog-read-time">⏱️ 10 min</span>
+                            </div>
+                        </div>
+                        <div class="blog-card-footer">
+                            <a href="#" class="blog-read-more">Leer más →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="software-engineering">
+                        <div class="blog-card-header software-engineering">
+                            <span class="category-badge">Software Engineering</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3 class="blog-card-title">Testing Strategies para Sistemas Distribuidos</h3>
+                            <p class="blog-card-excerpt">Estrategias de testing efectivas para microservicios: unit, integration, contract y chaos testing.</p>
+                            <div class="blog-card-meta">
+                                <span class="blog-date">📅 2024-06-05</span>
+                                <span class="blog-read-time">⏱️ 15 min</span>
+                            </div>
+                        </div>
+                        <div class="blog-card-footer">
+                            <a href="#" class="blog-read-more">Leer más →</a>
+                        </div>
+                    </article>
+
+                    <!-- Data Platform Posts -->
+                    <article class="blog-card" data-category="data-platform">
+                        <div class="blog-card-header data-platform">
+                            <span class="category-badge">Data Platform</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3 class="blog-card-title">Construyendo un Data Lake Moderno</h3>
+                            <p class="blog-card-excerpt">Arquitectura y mejores prácticas para implementar un data lake escalable con tecnologías cloud-native.</p>
+                            <div class="blog-card-meta">
+                                <span class="blog-date">📅 2024-06-03</span>
+                                <span class="blog-read-time">⏱️ 11 min</span>
+                            </div>
+                        </div>
+                        <div class="blog-card-footer">
+                            <a href="#" class="blog-read-more">Leer más →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="data-platform">
+                        <div class="blog-card-header data-platform">
+                            <span class="category-badge">Data Platform</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3 class="blog-card-title">Real-Time Data Pipelines con Kafka</h3>
+                            <p class="blog-card-excerpt">Diseño e implementación de pipelines de datos en tiempo real usando Apache Kafka y stream processing.</p>
+                            <div class="blog-card-meta">
+                                <span class="blog-date">📅 2024-05-28</span>
+                                <span class="blog-read-time">⏱️ 13 min</span>
+                            </div>
+                        </div>
+                        <div class="blog-card-footer">
+                            <a href="#" class="blog-read-more">Leer más →</a>
+                        </div>
+                    </article>
+
+                    <!-- Personal Posts -->
+                    <article class="blog-card" data-category="personal">
+                        <div class="blog-card-header personal">
+                            <span class="category-badge">Personal</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3 class="blog-card-title">{{posts[0].title}}</h3>
+                            <p class="blog-card-excerpt">{{posts[0].desc}}</p>
+                            <div class="blog-card-meta">
+                                <span class="blog-date">📅 {{posts[0].date}}</span>
+                                <span class="blog-read-time">⏱️ 5 min</span>
+                            </div>
+                        </div>
+                        <div class="blog-card-footer">
+                            <a href="https://medium.com/@james.cortes.t/logo-a23760b5d949" target="_blank" class="blog-read-more">Leer en Medium →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-category="personal">
+                        <div class="blog-card-header personal">
+                            <span class="category-badge">Personal</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3 class="blog-card-title">Chat GPT desbloqueando</h3>
+                            <p class="blog-card-excerpt">Hace un tiempo que tenía ganas de cambiar mi sitio, como ando con poco tiempo, le pedí ayuda a Chat GPT y me recomendó este diseño.</p>
+                            <div class="blog-card-meta">
+                                <span class="blog-date">📅 2024-05-22</span>
+                                <span class="blog-read-time">⏱️ 4 min</span>
+                            </div>
+                        </div>
+                        <div class="blog-card-footer">
+                            <a href="https://medium.com/@james.cortes.t/chat-gpt-desbloqueando-c6deb41fd833" target="_blank" class="blog-read-more">Leer en Medium →</a>
+                        </div>
+                    </article>
+
+                    <!-- Quote Card -->
+                    <article class="blog-card quote-card" data-category="all">
+                        <div class="quote-content">
+                            <blockquote>
+                                <p>"La tecnología está al servicio de los usuarios, no para satisfacer nuestros egos."</p>
+                                <footer>— Cap 02 Technologist Life</footer>
+                            </blockquote>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
-        <div id="footer"> </div>
     </main>
 
     <!--JS Functions -->
-    <script src="assets/js/app.js?v=20260308"></script>
+    <script src="assets/js/app.js?v=20260308c"></script>
     <script>
         document.getElementById('mobile-menu').addEventListener('click', function() {
             document.querySelector('.nav-list').classList.toggle('active');
+        });
+
+        // Filtrado de categorías
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Actualizar botón activo
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filtrar cards
+                blogCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    
+                    if (category === 'all' || cardCategory === 'all' || cardCategory === category) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
         });
     </script>
 
